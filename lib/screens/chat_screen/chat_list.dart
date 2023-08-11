@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:talkaro/screens/chat_screen/widgets/drawer.dart';
 import 'package:talkaro/screens/chat_screen/widgets/tab1_widgets.dart';
 import 'package:talkaro/screens/chat_screen/widgets/tab2_widgets.dart';
 import 'package:talkaro/screens/chat_screen/widgets/tabs_style.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/main_widgets.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -23,27 +25,14 @@ class _HomePageState extends State<HomePage> {
           widthFactor: 2,
           child: FloatingActionButton(
               backgroundColor: ktheme,
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => HomePage(),
-                ));
-              },
+              onPressed: () {},
               child: Icon(
                 Icons.add_comment,
                 size: 30,
                 color: kwhite,
               )),
         ),
-        drawer: Drawer(
-            child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              color: ktheme,
-              child: CircleAvatar(radius: 80, backgroundColor: kblack),
-            )
-          ],
-        )),
+        drawer: CustomDrawer(),
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(120),
           child: AppBar(
@@ -51,7 +40,6 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {},
                 icon: Icon(
                   Icons.menu,
-                  size: 30,
                   color: kblack,
                 )),
             backgroundColor: kAppbarWhite,
@@ -61,7 +49,6 @@ class _HomePageState extends State<HomePage> {
               IconButton(
                 icon: Icon(
                   Icons.search,
-                  size: 30,
                   color: kblack,
                 ),
                 onPressed: () {},
@@ -71,7 +58,6 @@ class _HomePageState extends State<HomePage> {
                   icon: Icon(
                     Icons.more_vert,
                     color: kblack,
-                    size: 30,
                   ))
             ],
             bottom: TabBar(
