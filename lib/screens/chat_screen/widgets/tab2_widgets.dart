@@ -1,58 +1,78 @@
 import 'package:flutter/material.dart';
-import 'package:talkaro/screens/chat_screen/widgets/tab1_widgets.dart';
+import 'package:talkaro/utils/colors.dart';
+import 'package:talkaro/utils/constants.dart';
 
-class Tab2 extends StatelessWidget {
-  const Tab2({super.key});
+class CallsTab extends StatelessWidget {
+  const CallsTab({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: const [
-        ChatCard(
-          name: 'News plakkad',
-          message: "lorem ipsum",
-          time: 'today',
+        CallsCard(
+          name: 'jesson',
+          time: "just now",
+          icon: Icons.call,
         ),
-        ChatCard(
+        CallsCard(
           name: 'Family',
-          message: "ajith bro : hellow all",
-          time: 'today',
+          time: "3 minutes ago",
+          icon: Icons.videocam,
         ),
-        ChatCard(
-          name: 'MTCHS PKD',
-          message: "amal : yeah bro",
-          time: 'today',
+        CallsCard(
+          name: 'jithin chacko',
+          time: "15 minutes ago",
+          icon: Icons.videocam,
         ),
-        ChatCard(
-          name: 'DEVS kerala',
-          message: "lorem ipsum",
-          time: 'yesterday',
+        CallsCard(
+          name: 'prasad ',
+          time: "today",
+          icon: Icons.call,
         ),
-        ChatCard(
-          name: 'Flutter community',
-          message: "lorem ipsum",
-          time: 'yesterday',
+        CallsCard(
+          name: 'jesson ',
+          time: "yesterday ",
+          icon: Icons.call,
         ),
-        ChatCard(
-          name: 'Dart devs',
-          message: "lorem ipsum",
-          time: 'yesterday',
+        CallsCard(
+          name: 'sandeep ',
+          time: "yesterday",
+          icon: Icons.videocam,
         ),
-        ChatCard(
-          name: 'world of IT',
-          message: "lorem ipsum",
-          time: 'yesterday',
-        ),
-        ChatCard(
-          name: 'Inspiring expressions',
-          message: "lorem ipsum",
-          time: 'yesterday',
-        ),
-        ChatCard(
-          name: 'safari',
-          message: "lorem ipsum",
-          time: 'yesterday',
-        ),
+      ],
+    );
+  }
+}
+
+class CallsCard extends StatelessWidget {
+  const CallsCard(
+      {super.key, required this.name, required this.time, required this.icon});
+  final String name;
+  final String time;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        kheight5,
+        ListTile(
+            leading: CircleAvatar(
+              radius: 35,
+              backgroundImage: AssetImage("images/user.png"),
+            ),
+            title: Text(
+              name,
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            ),
+            subtitle: Text(
+              time,
+            ),
+            trailing: Icon(
+              icon,
+              size: 30,
+              color: ktheme,
+            )),
       ],
     );
   }

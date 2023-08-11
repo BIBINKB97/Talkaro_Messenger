@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:talkaro/screens/chat_screen/chat_list.dart';
-import 'package:talkaro/screens/inbox/inbox.dart';
+
 import 'package:talkaro/utils/colors.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => ChatListPage(),
+        '/': (context) => HomePage(),
       },
     );
   }

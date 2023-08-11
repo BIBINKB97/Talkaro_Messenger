@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:talkaro/screens/chat_screen/widgets/tab1_widgets.dart';
 import 'package:talkaro/screens/chat_screen/widgets/tab2_widgets.dart';
+import 'package:talkaro/screens/chat_screen/widgets/tabs_style.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/main_widgets.dart';
-
-class ChatListPage extends StatefulWidget {
-  const ChatListPage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<ChatListPage> createState() => _ChatListPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _ChatListPageState extends State<ChatListPage> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -19,14 +19,19 @@ class _ChatListPageState extends State<ChatListPage> {
       length: 2,
       child: Scaffold(
         floatingActionButton: Align(
-          widthFactor: 2.1,
-          heightFactor: 3.8,
+          heightFactor: 2.8,
+          widthFactor: 2,
           child: FloatingActionButton(
               backgroundColor: ktheme,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => HomePage(),
+                ));
+              },
               child: Icon(
-                Icons.add,
+                Icons.add_comment,
                 size: 30,
+                color: kwhite,
               )),
         ),
         drawer: Drawer(
@@ -75,36 +80,14 @@ class _ChatListPageState extends State<ChatListPage> {
                 indicator: BoxDecoration(
                     borderRadius: BorderRadius.circular(10), color: ktheme),
                 tabs: const [
-                  Tab(
-                    child: SizedBox(
-                      height: 50,
-                      width: 150,
-                      child: Center(
-                        child: Text(
-                          "Chats",
-                          style: TextStyle(fontSize: 17),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 50,
-                    width: 150,
-                    child: Center(
-                      child: Tab(
-                        child: Text(
-                          "group",
-                          style: TextStyle(fontSize: 17),
-                        ),
-                      ),
-                    ),
-                  )
+                  CustomTab(tabtitle: "Chats"),
+                  CustomTab(tabtitle: "Calls")
                 ]),
           ),
         ),
         body: TabBarView(children: const [
-          Tab1(),
-          Tab2(),
+          ChatsTab(),
+          CallsTab(),
         ]),
       ),
     );

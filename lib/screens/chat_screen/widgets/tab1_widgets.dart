@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:talkaro/utils/constants.dart';
 
-class Tab1 extends StatelessWidget {
-  const Tab1({super.key});
+class ChatsTab extends StatelessWidget {
+  const ChatsTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,12 +10,22 @@ class Tab1 extends StatelessWidget {
       children: const [
         ChatCard(
           name: 'Amal Suresh',
-          message: " porche.. porcheeeee por",
+          message: "porche.. porcheeeee por",
           time: 'today',
         ),
         ChatCard(
           name: 'justin',
           message: "hellow",
+          time: 'today',
+        ),
+        ChatCard(
+          name: 'News plakkad',
+          message: "lorem ipsum",
+          time: 'today',
+        ),
+        ChatCard(
+          name: 'Family',
+          message: "ajith bro : hellow all",
           time: 'today',
         ),
         ChatCard(
@@ -37,21 +47,6 @@ class Tab1 extends StatelessWidget {
           name: 'sandeep ',
           message: "where are you ?",
           time: 'yesterday',
-        ),
-        ChatCard(
-          name: 'subith ',
-          message: "nice",
-          time: '01/08/2023',
-        ),
-        ChatCard(
-          name: 'ridhin ',
-          message: "nice",
-          time: '01/08/2023',
-        ),
-        ChatCard(
-          name: 'nabeel ',
-          message: "nice",
-          time: '02/08/2023',
         ),
       ],
     );
