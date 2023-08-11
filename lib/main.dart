@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:talkaro/screens/chat_screen/chat_list.dart';
-import 'package:talkaro/screens/chat_screen/widgets.dart';
+import 'package:talkaro/screens/inbox/inbox.dart';
+import 'package:talkaro/utils/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,16 +15,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Talkaro',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: customColor,
       ),
-   
-               initialRoute: '/', 
+      initialRoute: '/',
       routes: {
         '/': (context) => ChatListPage(),
-     
-      
       },
-
     );
   }
 }
