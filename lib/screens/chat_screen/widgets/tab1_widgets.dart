@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:talkaro/utils/constants.dart';
 
+import '../../inbox/inbox.dart';
+
 class ChatsTab extends StatelessWidget {
   const ChatsTab({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: const [
-        ChatCard(
-          name: 'Amal Suresh',
-          message: "porche.. porcheeeee por",
-          time: 'today',
+      children: [
+        InkWell(
+          onTap: () => Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => InboxPage(),
+          )),
+          child: ChatCard(
+            name: 'Amal Suresh',
+            message: "okey done",
+            time: 'today',
+          ),
         ),
         ChatCard(
           name: 'justin',

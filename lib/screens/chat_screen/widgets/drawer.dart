@@ -22,12 +22,38 @@ class CustomDrawer extends StatelessWidget {
                     backgroundImage: AssetImage("images/user.png"),
                   ),
                   kheight10,
-                  Text('Bibin KB')
+                  Text(
+                    'Bibin KB',
+                    style: TextStyle(
+                      fontSize: 18.5,
+                    ),
+                  )
                 ],
               )),
           ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Home'),
+            leading: Icon(Icons.person),
+            title: Text('Profile'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.app_registration_rounded),
+            title: Text('About Us'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.info_outline),
+            title: Text('Legal informations'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.privacy_tip),
+            title: Text('privacy policy'),
             onTap: () {
               Navigator.pop(context);
             },
@@ -35,6 +61,13 @@ class CustomDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.logout),
+            title: Text('Log out'),
             onTap: () {
               Navigator.pop(context);
             },

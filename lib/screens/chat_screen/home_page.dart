@@ -36,12 +36,6 @@ class _HomePageState extends State<HomePage> {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(120),
           child: AppBar(
-            leading: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.menu,
-                  color: kblack,
-                )),
             backgroundColor: kAppbarWhite,
             title: AppBarTitle(title: 'Talkaro'),
             elevation: 0,

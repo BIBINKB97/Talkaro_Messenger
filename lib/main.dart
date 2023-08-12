@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:talkaro/screens/chat_screen/chat_list.dart';
+import 'package:talkaro/screens/chat_screen/home_page.dart';
 
 import 'package:talkaro/utils/colors.dart';
 
@@ -16,8 +16,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Talkaro',
       theme: ThemeData(
-        primarySwatch: customColor,
-      ),
+          primarySwatch: customColor,
+          iconTheme: IconThemeData(color: Colors.black)),
       initialRoute: '/',
       routes: {
         '/': (context) => HomePage(),
