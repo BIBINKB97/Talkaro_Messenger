@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:talkaro/screens/chat_screen/home_page.dart';
+import 'package:talkaro/screens/home_page/home_page.dart';
 
 import 'package:talkaro/utils/colors.dart';
 

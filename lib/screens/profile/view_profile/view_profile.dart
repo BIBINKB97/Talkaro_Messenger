@@ -12,7 +12,7 @@ class ViewProfile extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: kAppbarWhite,
+        backgroundColor: ktheme,
         centerTitle: true,
         title: AppBarTitle(title: 'Amal Suresh'),
       ),
@@ -22,20 +22,20 @@ class ViewProfile extends StatelessWidget {
             children: [
               kheight80,
               CircleAvatar(
-                backgroundImage: AssetImage("images/user.png"),
-                radius: 100,
+                backgroundImage: AssetImage("images/Jins.jpeg"),
+                radius: 90,
               ),
               kheight10,
               Text(
                 "Amal Suresh",
                 style: TextStyle(
-                    fontSize: 30, fontWeight: FontWeight.w600, color: kgrey),
+                    fontSize: 20, fontWeight: FontWeight.w600, color: kgrey),
               ),
               kheight10,
               Text(
                 "9568423254",
                 style: TextStyle(
-                    fontSize: 25, fontWeight: FontWeight.w600, color: kgrey),
+                    fontSize: 15, fontWeight: FontWeight.w600, color: kgrey),
               ),
               kheight40,
               Row(
@@ -85,7 +85,7 @@ class ViewProfile extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  'offline is the new laxuary."Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                  'offline is the new laxuary."Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  laboris nisi ut aliquip ex ea commodo consequat.',
                   style: TextStyle(fontSize: 20),
                 ),
               ),

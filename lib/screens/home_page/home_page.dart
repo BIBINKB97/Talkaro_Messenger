@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:talkaro/screens/chat_screen/widgets/drawer.dart';
-import 'package:talkaro/screens/chat_screen/widgets/tab1_widgets.dart';
-import 'package:talkaro/screens/chat_screen/widgets/tab2_widgets.dart';
-import 'package:talkaro/screens/chat_screen/widgets/tabs_style.dart';
+import 'package:talkaro/screens/home_page/widgets/drawer.dart';
+import 'package:talkaro/screens/home_page/widgets/tab1_widgets.dart';
+import 'package:talkaro/screens/home_page/widgets/tab2_widgets.dart';
+import 'package:talkaro/screens/home_page/widgets/tabs_style.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/main_widgets.dart';
 
@@ -36,14 +36,14 @@ class _HomePageState extends State<HomePage> {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(120),
           child: AppBar(
-            backgroundColor: kAppbarWhite,
+            backgroundColor: ktheme,
             title: AppBarTitle(title: 'Talkaro'),
             elevation: 0,
             actions: [
               IconButton(
                 icon: Icon(
                   Icons.search,
-                  color: kblack,
+                  color: kwhite,
                 ),
                 onPressed: () {},
               ),
@@ -51,17 +51,16 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {},
                   icon: Icon(
                     Icons.more_vert,
-                    color: kblack,
+                    color: kwhite,
                   ))
             ],
             bottom: TabBar(
-                unselectedLabelColor: ktheme,
+                unselectedLabelColor: kblack,
                 isScrollable: true,
-                indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10), color: ktheme),
+                indicatorColor: kwhite,
                 tabs: const [
                   CustomTab(tabtitle: "Chats"),
-                  CustomTab(tabtitle: "Calls")
+                  CustomTab(tabtitle: "Calls"),
                 ]),
           ),
         ),

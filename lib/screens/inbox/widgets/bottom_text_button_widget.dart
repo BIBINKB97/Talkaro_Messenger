@@ -8,12 +8,12 @@ class BottomTextBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      heightFactor: 12.5,
+      heightFactor: 12.3,
       alignment: Alignment.bottomCenter,
       child: Container(
         decoration: BoxDecoration(
-            border: Border.all(style: BorderStyle.solid),
-            borderRadius: BorderRadius.circular(10)),
+            color: Color.fromARGB(255, 224, 225, 225),
+            borderRadius: BorderRadius.circular(26)),
         padding: EdgeInsets.only(left: 10, bottom: 10, top: 10),
         height: 60,
         width: 360,
@@ -23,16 +23,15 @@ class BottomTextBox extends StatelessWidget {
               onTap: () {},
               child: Icon(
                 Icons.emoji_emotions_outlined,
-                color: ktheme,
-                size: 28,
+                color: kgrey,
               ),
             ),
             kwidth10,
             Expanded(
               child: TextField(
                 decoration: InputDecoration(
-                    hintText: "Write message...",
-                    hintStyle: TextStyle(color: Colors.black54, fontSize: 18),
+                    hintText: "Message",
+                    hintStyle: TextStyle(color: Colors.black54, fontSize: 19),
                     border: InputBorder.none),
               ),
             ),
@@ -40,17 +39,16 @@ class BottomTextBox extends StatelessWidget {
               angle: 47 * (99 / 179),
               child: Icon(
                 Icons.attach_file,
-                color: ktheme,
-                size: 28,
+                color: kgrey,
               ),
             ),
             kwidth20,
-            Transform.rotate(
-              angle: 45 * (99 / 178.9),
+            CircleAvatar(
+              radius: 22,
+              backgroundColor: ktheme,
               child: Icon(
                 Icons.send,
-                color: ktheme,
-                size: 28,
+                color: kwhite,
               ),
             ),
             kwidth20

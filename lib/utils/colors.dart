@@ -6,8 +6,8 @@ const kwhite = Colors.white;
 
 const kblack = Colors.black;
 
-const klight1 = Color.fromARGB(255, 224, 253, 255);
-const klight2 = Color.fromARGB(255, 207, 213, 249);
+const klight1 = Color.fromARGB(235, 223, 223, 223);
+const klight2 = Color.fromARGB(255, 157, 219, 188);
 
 const kgrey = Color.fromARGB(255, 132, 131, 131);
 
