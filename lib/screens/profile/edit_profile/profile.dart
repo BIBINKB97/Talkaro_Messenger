@@ -5,16 +5,17 @@ import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
 import 'package:talkaro/utils/main_widgets.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class Profile extends StatelessWidget {
+  const Profile({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: kAppbarWhite,
-        title: AppBarTitle(title: "Edit Profile"),
+        backgroundColor: ktheme,
+        centerTitle: true,
+        title: AppBarTitle(title: "Profile"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -33,7 +34,7 @@ class ProfilePage extends StatelessWidget {
                       radius: 28,
                       backgroundColor: ktheme,
                       child: Icon(
-                        Icons.edit,
+                        Icons.camera_alt_rounded,
                         color: kwhite,
                       ),
                     ),

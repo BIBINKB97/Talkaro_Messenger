@@ -29,13 +29,13 @@ class ViewProfile extends StatelessWidget {
               Text(
                 "Amal Suresh",
                 style: TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.w600, color: kgrey),
+                    fontSize: 18, fontWeight: FontWeight.w600, color: kgrey),
               ),
               kheight10,
               Text(
                 "9568423254",
                 style: TextStyle(
-                    fontSize: 15, fontWeight: FontWeight.w600, color: kgrey),
+                    fontSize: 16, fontWeight: FontWeight.w600, color: kgrey),
               ),
               kheight40,
               Row(

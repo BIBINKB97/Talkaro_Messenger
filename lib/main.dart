@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:talkaro/screens/home_page/home_page.dart';
+import 'package:talkaro/screens/splash_screen/splash_screen.dart';
 
 import 'package:talkaro/utils/colors.dart';
 
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.black)),
       initialRoute: '/',
       routes: {
-        '/': (context) => HomePage(),
+        '/': (context) => SplashScreen(),
       },
     );
   }

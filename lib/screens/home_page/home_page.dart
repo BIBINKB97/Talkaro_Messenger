@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
         ),
         drawer: CustomDrawer(),
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(120),
+          preferredSize: Size.fromHeight(110),
           child: AppBar(
             backgroundColor: ktheme,
             title: AppBarTitle(title: 'Talkaro'),

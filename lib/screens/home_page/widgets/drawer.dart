@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:talkaro/screens/profile/edit_profile/profile.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
 
@@ -34,7 +35,8 @@ class CustomDrawer extends StatelessWidget {
             leading: Icon(Icons.person),
             title: Text('Profile'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Profile()));
             },
           ),
           ListTile(
