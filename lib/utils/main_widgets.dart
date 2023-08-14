@@ -14,3 +14,27 @@ class AppBarTitle extends StatelessWidget {
     );
   }
 }
+
+class CommonButton extends StatelessWidget {
+  const CommonButton({
+    super.key,
+    required this.title,
+  });
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+              backgroundColor: ktheme,
+              shape: StadiumBorder(),
+              fixedSize: Size(130, 50)),
+          child: Text(
+            title,
+            style: TextStyle(fontSize: 20),
+          )),
+    );
+  }
+}

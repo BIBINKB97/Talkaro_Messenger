@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 
-const ktheme = Color.fromARGB(255, 30, 165, 175);
-
+const ktheme = Color.fromARGB(255, 59, 178, 156);
 const kwhite = Colors.white;
-
 const kblack = Colors.black;
-
 const klight1 = Color.fromARGB(235, 223, 223, 223);
 const klight2 = Color.fromARGB(255, 157, 219, 188);
-
 const kgrey = Color.fromARGB(255, 132, 131, 131);
-
 const kAppbarWhite = Color.fromARGB(0, 255, 255, 255);
-
 const MaterialColor customColor = MaterialColor(
   0xFF1EA5AF,
   <int, Color>{

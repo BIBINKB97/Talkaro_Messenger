@@ -56,12 +56,7 @@ class Profile extends StatelessWidget {
               label: "phone",
             ),
             kheight20,
-            ElevatedButton(
-                onPressed: () {},
-                child: Text(
-                  "     save     ",
-                  style: TextStyle(fontSize: 20),
-                ))
+            CommonButton(title: " save ")
           ],
         ),
       ),
