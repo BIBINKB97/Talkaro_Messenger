@@ -16,17 +16,15 @@ class AppBarTitle extends StatelessWidget {
 }
 
 class CommonButton extends StatelessWidget {
-  const CommonButton({
-    super.key,
-    required this.title,
-  });
+  const CommonButton({super.key, required this.title, required this.onPressed});
   final String title;
+  final Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: onPressed,
           style: ElevatedButton.styleFrom(
               backgroundColor: ktheme,
               shape: StadiumBorder(),

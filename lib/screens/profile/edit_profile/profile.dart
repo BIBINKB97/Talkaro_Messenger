@@ -5,8 +5,8 @@ import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
 import 'package:talkaro/utils/main_widgets.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({super.key});
+class UserProfile extends StatelessWidget {
+  const UserProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,9 @@ class Profile extends StatelessWidget {
               label: "phone",
             ),
             kheight20,
-            CommonButton(title: " save ")
+            CommonButton(title: " save ",
+            onPressed: () {},
+            )
           ],
         ),
       ),
