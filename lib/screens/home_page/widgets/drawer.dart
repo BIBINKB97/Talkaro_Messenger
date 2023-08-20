@@ -20,7 +20,7 @@ class CustomDrawer extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => UserProfile()));
-                 },
+                },
                 child: Column(
                   children: const [
                     CircleAvatar(
