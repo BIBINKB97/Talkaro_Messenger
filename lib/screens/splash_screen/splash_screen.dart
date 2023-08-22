@@ -5,6 +5,8 @@ import 'package:talkaro/screens/home_page/home_page.dart';
 import 'package:talkaro/screens/login_rejister/login_page.dart';
 import 'package:talkaro/utils/colors.dart';
 
+import '../login_rejister/verification.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -18,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => LoginPage()));
+          MaterialPageRoute(builder: (context) => PhoneNumberVarification()));
     });
   }
 
