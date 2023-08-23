@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:talkaro/screens/home_page/home_page.dart';
 import 'package:talkaro/utils/constants.dart';
+import 'package:talkaro/utils/main_widgets.dart';
 
 class OtpVerification extends StatelessWidget {
   const OtpVerification({super.key});
@@ -23,13 +25,18 @@ class OtpVerification extends StatelessWidget {
         style: TextStyle(
             fontSize: 17, wordSpacing: 2, fontWeight: FontWeight.w500),
       )),
-      kheight20,
+      kheight80,
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 100.0),
-        child: TextFormField(
-        
-        ),
-      )
+        child: TextFormField(),
+      ),
+      kheight40,
+      CommonButton(
+          title: "veryfy",
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => HomePage()));
+          })
     ]));
   }
 }

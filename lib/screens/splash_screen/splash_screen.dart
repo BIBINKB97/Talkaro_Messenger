@@ -1,11 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:talkaro/screens/home_page/home_page.dart';
-import 'package:talkaro/screens/login_rejister/login_page.dart';
+
 import 'package:talkaro/utils/colors.dart';
 
-import '../login_rejister/verification.dart';
+import '../login_rejister/phone_number_verification.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

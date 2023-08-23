@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:talkaro/models/chat_message_model.dart';
 import 'package:talkaro/utils/colors.dart';
 
+// ignore: must_be_immutable
 class ChatList extends StatelessWidget {
   ChatList({super.key});
   List<ChatMessage> messages = [

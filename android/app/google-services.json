@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "83886421277",
+    "project_id": "talkaro-messenger-6685a",
+    "storage_bucket": "talkaro-messenger-6685a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83886421277:android:8f0b896a88cc681341ddf4",
+        "android_client_info": {
+          "package_name": "com.example.talkaro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83886421277-3a7e99vgj5bboabea749l0f3v3896m2o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbRHEWLc6Sw5X09i0zl4VcSkexUnv4-yc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "83886421277-3a7e99vgj5bboabea749l0f3v3896m2o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
