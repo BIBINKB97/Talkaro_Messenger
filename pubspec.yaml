@@ -28,24 +28,26 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  cloud_firestore: ^4.8.5
-  country_picker: ^2.0.20
-  cupertino_icons: ^1.0.2
-  firebase_auth: ^4.7.3
-  firebase_core: ^2.15.1
-  firebase_storage: ^11.2.6
+  cloud_firestore: any
+  country_picker: any
+  cupertino_icons: any
+  firebase_auth: any
+  firebase_core: any
+  firebase_storage: any
   flutter:
     sdk: flutter
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
+  flutter_riverpod: any
+  hive: any
+  hive_flutter: any
+  image_picker: any
   lottie: null
-  shared_preferences: ^2.2.0
+  shared_preferences: any
 
 dev_dependencies:
-  flutter_lints: ^2.0.0
+  flutter_lints: any
   flutter_test:
     sdk: flutter
-  hive_generator: ^2.0.1
+  hive_generator: any
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

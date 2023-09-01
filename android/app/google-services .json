@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "83886421277-fo9af10u5a3utnvr7795fo451njdfi6t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.talkaro",
+            "certificate_hash": "5e83d087d2f6a9371cf83cde0fd35592a985f481"
+          }
+        },
+        {
           "client_id": "83886421277-3a7e99vgj5bboabea749l0f3v3896m2o.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "83886421277-3a7e99vgj5bboabea749l0f3v3896m2o.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "83886421277-fg5levkbv8lurn2ltl8u7u1sroaaf49q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.talkaro"
+              }
             }
           ]
         }

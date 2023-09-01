@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/firebase_options.dart';
+import 'package:talkaro/router.dart';
 import 'package:talkaro/screens/splash_screen/splash_screen.dart';
 
 import 'package:talkaro/utils/colors.dart';
@@ -10,7 +12,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(ProviderScope(child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -23,10 +25,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: customColor,
           iconTheme: IconThemeData(color: Colors.black)),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => SplashScreen(),
-      },
+      onGenerateRoute: (settings) => generateRoute(settings),
+      home: SplashScreen(),
     );
   }
 }

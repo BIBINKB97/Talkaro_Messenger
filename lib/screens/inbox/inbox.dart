@@ -42,9 +42,9 @@ class InboxPage extends StatelessWidget {
           ),
           actions: [
             Padding(
-              padding: const EdgeInsets.only(right: 10.0),
+              padding:  EdgeInsets.only(right: 10.0),
               child: Row(
-                children: const [
+                children: const[
                   Icon(
                     Icons.call_rounded,
                     color: kwhite,

@@ -55,7 +55,7 @@ class ViewProfile extends StatelessWidget {
                   ),
                   kwidth30,
                   Column(
-                    children: const [
+                    children:  const [
                       ThreeButtons(
                         icon: Icon(
                           Icons.call_outlined,
@@ -68,7 +68,7 @@ class ViewProfile extends StatelessWidget {
                   ),
                   kwidth30,
                   Column(
-                    children: const [
+                    children: const[
                       ThreeButtons(
                         icon: Icon(
                           Icons.videocam_outlined,
@@ -83,7 +83,7 @@ class ViewProfile extends StatelessWidget {
               ),
               kheight20,
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
                   'offline is the new laxuary."Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  laboris nisi ut aliquip ex ea commodo consequat.',
                   style: TextStyle(fontSize: 20),

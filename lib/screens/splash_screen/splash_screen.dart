@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:talkaro/utils/colors.dart';
 
-import '../login_rejister/phone_number_verification.dart';
+import '../login_rejister/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,8 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(Duration(seconds: 2), () {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => PhoneNumberVarification()));
+      Navigator.pushNamed(context, LoginScreen.routeName);
     });
   }
 
