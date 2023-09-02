@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:talkaro/screens/home_page/widgets/drawer.dart';
 import 'package:talkaro/screens/home_page/widgets/tab1_widgets.dart';
 import 'package:talkaro/screens/home_page/widgets/tab2_widgets.dart';
-import 'package:talkaro/screens/home_page/widgets/tabs_style.dart';
+import 'package:talkaro/screens/home_page/widgets/tab_style.dart';
+
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/main_widgets.dart';
 

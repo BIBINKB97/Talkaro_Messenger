@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:talkaro/screens/home_page/home_page.dart';
-import 'package:talkaro/screens/login_rejister/auth/controller/auth_controller.dart';
+import 'package:talkaro/screens/home_page/auth/controller/auth_controller.dart';
 import 'package:talkaro/utils/constants.dart';
 import 'package:talkaro/utils/main_widgets.dart';
 
@@ -31,14 +30,15 @@ class OTPScreen extends ConsumerWidget {
       kheight20,
       Center(
           child: Text(
-        "we have sent an SMS with a code",
+        "Enter your otp",
         style: TextStyle(
             fontSize: 17, wordSpacing: 2, fontWeight: FontWeight.w500),
       )),
       kheight80,
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 100.0),
+        padding: const EdgeInsets.symmetric(horizontal: 140.0),
         child: TextField(
+          
           textAlign: TextAlign.center,
           keyboardType: TextInputType.number,
           onChanged: (val) {
@@ -47,18 +47,14 @@ class OTPScreen extends ConsumerWidget {
             }
           },
           decoration: InputDecoration(
-            hintText: '- - - - - -',
+            
+            hintText: '-  -  -  -  -  -',
             hintStyle: TextStyle(fontSize: 30),
           ),
         ),
       ),
       kheight40,
-      CommonButton(
-          title: "veryfy",
-          onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => HomePage()));
-          })
+      CommonButton(title: "veryfy", onPressed: () {})
     ]));
   }
 }

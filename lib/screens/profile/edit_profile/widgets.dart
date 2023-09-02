@@ -5,9 +5,10 @@ import '../../../utils/colors.dart';
 
 class TextFormProfile extends StatelessWidget {
   const TextFormProfile(
-      {super.key, required this.hintText, required this.label});
+      {super.key, required this.hintText, required this.label,this.controller});
   final String hintText;
   final String label;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,7 @@ class TextFormProfile extends StatelessWidget {
       child: Column(
         children: [
           TextFormField(
+            controller: controller,
             cursorColor: ktheme,
             decoration: InputDecoration(
                 hintText: hintText,

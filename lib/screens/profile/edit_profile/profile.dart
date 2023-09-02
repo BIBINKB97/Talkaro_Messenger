@@ -23,7 +23,7 @@ class UserProfile extends StatelessWidget {
             kheight80,
             Center(
               child: Stack(
-                children: const [
+                children:  [
                   CircleAvatar(
                     backgroundImage: AssetImage("images/user.png"),
                     radius: 100,
@@ -33,8 +33,9 @@ class UserProfile extends StatelessWidget {
                     child: CircleAvatar(
                       radius: 28,
                       backgroundColor: ktheme,
-                      child: Icon(
-                        Icons.camera_alt_rounded,
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.camera_alt_rounded),
                         color: kwhite,
                       ),
                     ),
@@ -44,6 +45,7 @@ class UserProfile extends StatelessWidget {
             ),
             kheight20,
             TextFormProfile(
+              
               hintText: ' Enter Name',
               label: "Name",
             ),

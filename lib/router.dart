@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:talkaro/common/widgets/error.dart';
+
 import 'package:talkaro/screens/login_rejister/login_screen.dart';
 import 'package:talkaro/screens/login_rejister/user_information.dart';
 
@@ -14,7 +16,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     default:
       return MaterialPageRoute(
           builder: (context) => Scaffold(
-                body: Center(child: Text("something went wrong !")),
+                body: ErrorScreen(error: "something went wrong !")
               ));
   }
 }
