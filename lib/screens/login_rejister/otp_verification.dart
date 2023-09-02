@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:talkaro/screens/home_page/auth/controller/auth_controller.dart';
+import 'package:talkaro/screens/login_rejister/auth/controller/auth_controller.dart';
 import 'package:talkaro/utils/constants.dart';
 import 'package:talkaro/utils/main_widgets.dart';
 

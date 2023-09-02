@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/models/user_model.dart';
-import 'package:talkaro/screens/home_page/auth/repository/auth_repository.dart';
+import 'package:talkaro/screens/login_rejister/auth/repository/auth_repository.dart';
 
 final authControllerProvider = Provider((ref) {
   final authRepository = ref.watch(authRepositoryProvider);

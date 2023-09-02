@@ -7,9 +7,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/repositories/common_firebase_storage_repository.dart';
 import 'package:talkaro/models/user_model.dart';
 import 'package:talkaro/screens/home_page/home_page.dart';
+
 import 'package:talkaro/screens/login_rejister/otp_verification.dart';
 import 'package:talkaro/screens/login_rejister/user_information.dart';
-
 import 'package:talkaro/utils/snack_bar.dart';
 
 final authRepositoryProvider = Provider((ref) => AuthRepository(

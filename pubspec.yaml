@@ -36,6 +36,7 @@ dependencies:
   firebase_storage: any
   flutter:
     sdk: flutter
+  flutter_contacts: ^1.1.7+1
   flutter_riverpod: any
   hive: any
   hive_flutter: any
