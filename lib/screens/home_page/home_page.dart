@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:talkaro/features/select_contacts/screens/select_contacts_screen.dart';
 import 'package:talkaro/screens/home_page/widgets/drawer.dart';
 import 'package:talkaro/screens/home_page/widgets/tab1_widgets.dart';
 import 'package:talkaro/screens/home_page/widgets/tab2_widgets.dart';
@@ -26,10 +27,12 @@ class _HomePageState extends State<HomePage> {
           widthFactor: 2,
           child: FloatingActionButton(
               backgroundColor: ktheme,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, SelsectContactScreen.routeName);
+              },
               child: Icon(
                 Icons.add_comment,
-                size: 30,
+                size: 25,
                 color: kwhite,
               )),
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:talkaro/screens/login_rejister/user_information.dart';
 import 'package:talkaro/screens/profile/edit_profile/profile.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
@@ -18,8 +19,8 @@ class CustomDrawer extends StatelessWidget {
               ),
               child: InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => UserProfile()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => UserInformationScreen()));
                 },
                 child: Column(
                   children: const [
@@ -29,7 +30,7 @@ class CustomDrawer extends StatelessWidget {
                     ),
                     kheight10,
                     Text(
-                      'Bibin KB',
+                      'Name',
                       style: TextStyle(
                         fontSize: 18.5,
                       ),

@@ -6,8 +6,15 @@ import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
 import 'package:talkaro/utils/main_widgets.dart';
 
-class InboxPage extends StatelessWidget {
-  const InboxPage({super.key});
+class InboxScreen extends StatelessWidget {
+  static const String routeName = '/inbox-screen';
+  final String name;
+  final String uid;
+  const InboxScreen({
+    super.key,
+    required this.name,
+    required this.uid,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +38,8 @@ class InboxPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                AppBarTitle(title: "Amal Suresh"),
+              children: [
+                AppBarTitle(title: name),
                 Text(
                   'online',
                   style: TextStyle(color: kwhite, fontSize: 16),
@@ -42,9 +49,9 @@ class InboxPage extends StatelessWidget {
           ),
           actions: [
             Padding(
-              padding:  EdgeInsets.only(right: 10.0),
+              padding: EdgeInsets.only(right: 10.0),
               child: Row(
-                children: const[
+                children: const [
                   Icon(
                     Icons.call_rounded,
                     color: kwhite,

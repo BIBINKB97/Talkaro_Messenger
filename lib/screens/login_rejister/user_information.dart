@@ -10,7 +10,7 @@ import 'package:talkaro/utils/main_widgets.dart';
 import 'package:talkaro/utils/snack_bar.dart';
 
 class UserInformationScreen extends ConsumerStatefulWidget {
-  static const String routName = '/user-informationScreen';
+  static const String routeName = '/user-informationScreen';
   const UserInformationScreen({super.key});
 
   @override
@@ -30,12 +30,13 @@ class _UserInformationScreenState extends ConsumerState<UserInformationScreen> {
 
   void selectImage() async {
     image = await pickImageFromGallery(context);
+    setState(() {});
   }
 
   void storeUserData() async {
     String name = nameController.text.trim();
     if (name.isNotEmpty) {
-      ref.read(authControllerProvider).saveUserDataToFierbase(
+      ref.read(authControllerProvider).saveUserDataToFirebase(
             context,
             name,
             image,
@@ -62,20 +63,20 @@ class _UserInformationScreenState extends ConsumerState<UserInformationScreen> {
                   image == null
                       ? CircleAvatar(
                           backgroundImage: AssetImage("images/user.png"),
-                          radius: 100,
+                          radius: 80,
                         )
                       : CircleAvatar(
                           backgroundImage: FileImage(image!),
-                          radius: 100,
+                          radius: 80,
                         ),
                   Padding(
-                    padding: EdgeInsets.only(left: 135.0, top: 145),
+                    padding: EdgeInsets.only(left: 110.0, top: 120),
                     child: CircleAvatar(
-                      radius: 28,
+                      radius: 25,
                       backgroundColor: ktheme,
                       child: IconButton(
                         onPressed: selectImage,
-                        icon: Icon(Icons.camera_alt_rounded),
+                        icon: Icon(Icons.add_a_photo_rounded),
                         color: kwhite,
                       ),
                     ),
@@ -89,14 +90,14 @@ class _UserInformationScreenState extends ConsumerState<UserInformationScreen> {
               hintText: ' Enter Name',
               label: "Name",
             ),
-            TextFormProfile(
-              hintText: " Enter something about you",
-              label: "About",
-            ),
-            TextFormProfile(
-              hintText: ' Enter Phone Number ',
-              label: "phone",
-            ),
+            // TextFormProfile(
+            //   hintText: " Enter something about you",
+            //   label: "About",
+            // ),
+            // TextFormProfile(
+            //   hintText: ' Enter Phone Number ',
+            //   label: "phone",
+            // ),
             kheight20,
             CommonButton(
               title: " save ",

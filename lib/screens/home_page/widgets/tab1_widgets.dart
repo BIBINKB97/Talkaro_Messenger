@@ -12,7 +12,10 @@ class ChatsTab extends StatelessWidget {
       children: [
         InkWell(
           onTap: () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => InboxPage(),
+            builder: (context) => InboxScreen(
+              name: 'Shakil',
+              uid: '123456',
+            ),
           )),
           child: ChatCard(
             name: 'Amal Suresh',

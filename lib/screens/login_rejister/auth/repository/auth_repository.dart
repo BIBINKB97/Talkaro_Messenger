@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/repositories/common_firebase_storage_repository.dart';
 import 'package:talkaro/models/user_model.dart';
 import 'package:talkaro/screens/home_page/home_page.dart';
-
 import 'package:talkaro/screens/login_rejister/otp_verification.dart';
 import 'package:talkaro/screens/login_rejister/user_information.dart';
 import 'package:talkaro/utils/snack_bar.dart';
@@ -64,8 +62,9 @@ class AuthRepository {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: verificationId, smsCode: userOTP);
       await auth.signInWithCredential(credential);
+      // ignore: use_build_context_synchronously
       Navigator.pushNamedAndRemoveUntil(
-          context, UserInformationScreen.routName, (route) => false);
+          context, UserInformationScreen.routeName, (route) => false);
     } on FirebaseAuthException catch (e) {
       ShowSnackBar(context: context, content: e.message!);
     }
@@ -82,7 +81,7 @@ class AuthRepository {
       String photoUrl = 'images/user.png';
       if (profilePic != null) {
         photoUrl = await ref
-            .read(CommonFirebaseStorageRepositoryProvider)
+            .read(commonFirebaseStorageRepositoryProvider)
             .storeFileToFirebase(
               'profilePics/$uid',
               profilePic,
@@ -93,10 +92,11 @@ class AuthRepository {
         uid: uid,
         profilePic: photoUrl,
         isOnline: true,
-        phoneNumber: auth.currentUser!.uid,
+        phoneNumber: auth.currentUser!.phoneNumber!,
         groupId: [],
       );
       await firestore.collection('users').doc(uid).set(user.toMap());
+      // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(

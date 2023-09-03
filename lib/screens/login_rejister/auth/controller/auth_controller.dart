@@ -36,7 +36,7 @@ class AuthController {
         context: context, verificationId: verificationId, userOTP: userOTP);
   }
 
-  void saveUserDataToFierbase(
+  void saveUserDataToFirebase(
       BuildContext context, String name, File? profilPic) {
     authRepository.saveUserDataToFirebase(
       name: name,
