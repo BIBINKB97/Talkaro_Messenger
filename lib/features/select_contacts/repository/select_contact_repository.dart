@@ -1,9 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/models/user_model.dart';
-import 'package:talkaro/screens/inbox/inbox.dart';
+import 'package:talkaro/screens/chat_screen/chat_screen.dart';
 import 'package:talkaro/utils/snack_bar.dart';
 
 final selectContactsRepositoryProvider = Provider(
@@ -46,7 +48,7 @@ class SelectContactRepository {
           isFound = true;
           Navigator.pushNamed(
             context,
-            InboxScreen.routeName,
+            ChatScreen.routeName,
             arguments: {
               'name': userData.name,
               'uid': userData.uid,

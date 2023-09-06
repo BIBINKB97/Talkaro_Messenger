@@ -1,8 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:talkaro/screens/login_rejister/user_information.dart';
-import 'package:talkaro/screens/profile/edit_profile/profile.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
+import 'package:talkaro/utils/snack_bar.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -77,9 +78,12 @@ class CustomDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.logout),
-            title: Text('Log out'),
+            title: Text('Sign out'),
             onTap: () {
-              Navigator.pop(context);
+              FirebaseAuth.instance.signOut();
+              ShowSnackBar(
+                  context: context, content: 'You have been signed out !');
+                  Navigator.pop(context);
             },
           ),
         ],

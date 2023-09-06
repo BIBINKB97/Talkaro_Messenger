@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:talkaro/utils/constants.dart';
 
-import '../../inbox/inbox.dart';
+import '../../chat_screen/chat_screen.dart';
 
 class ChatsTab extends StatelessWidget {
   const ChatsTab({super.key});
@@ -12,7 +12,7 @@ class ChatsTab extends StatelessWidget {
       children: [
         InkWell(
           onTap: () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => InboxScreen(
+            builder: (context) => ChatScreen(
               name: 'Shakil',
               uid: '123456',
             ),

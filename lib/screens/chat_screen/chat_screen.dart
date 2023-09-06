@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/widgets/loader.dart';
 import 'package:talkaro/models/user_model.dart';
-import 'package:talkaro/screens/inbox/widgets/bottom_text_button_widget.dart';
-import 'package:talkaro/screens/inbox/widgets/chat_list.dart';
+import 'package:talkaro/screens/chat_screen/widgets/bottom_text_box.dart';
+import 'package:talkaro/screens/chat_screen/widgets/chat_list.dart';
 import 'package:talkaro/screens/login_rejister/auth/controller/auth_controller.dart';
 import 'package:talkaro/screens/profile/view_profile/view_profile.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
 import 'package:talkaro/utils/main_widgets.dart';
 
-class InboxScreen extends ConsumerWidget {
+class ChatScreen extends ConsumerWidget {
   static const String routeName = '/inbox-screen';
   final String name;
   final String uid;
-  const InboxScreen({
+  const ChatScreen({
     super.key,
     required this.name,
     required this.uid,
@@ -93,7 +93,7 @@ class InboxScreen extends ConsumerWidget {
             Center(child: Text("today")),
             Stack(
               children: [
-                BottomTextBox(),
+                BottomTextBox(  recieverUserId: uid),
                 ChatList(),
               ],
             ),

@@ -1,9 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:talkaro/screens/chat_screen/controler/chat_controller.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
 
-class BottomTextBox extends StatelessWidget {
-  const BottomTextBox({super.key});
+class BottomTextBox extends ConsumerStatefulWidget {
+  final String recieverUserId;
+  const BottomTextBox({
+    super.key,
+    required this.recieverUserId,
+  });
+
+  @override
+  ConsumerState<BottomTextBox> createState() => _BottomTextBoxState();
+}
+
+class _BottomTextBoxState extends ConsumerState<BottomTextBox> {
+  bool isShowSendButton = false;
+  final TextEditingController _messegeController = TextEditingController();
+
+  void sendTextMessege() async {
+    if (isShowSendButton) {
+      ref.read(chatControllerProvider).sendTextMessege(
+          context,
+           _messegeController.text.trim(),
+            widget.recieverUserId,
+            );
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _messegeController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +58,18 @@ class BottomTextBox extends StatelessWidget {
             ),
             kwidth10,
             Expanded(
-              child: TextField(
+              child: TextFormField(
+                onChanged: (val) {
+                  if (val.isNotEmpty) {
+                    setState(() {
+                      isShowSendButton = true;
+                    });
+                  } else {
+                    setState(() {
+                      isShowSendButton = false;
+                    });
+                  }
+                },
                 decoration: InputDecoration(
                     hintText: "Message",
                     hintStyle: TextStyle(color: Colors.black54, fontSize: 19),
@@ -47,7 +88,7 @@ class BottomTextBox extends StatelessWidget {
               radius: 22,
               backgroundColor: ktheme,
               child: Icon(
-                Icons.send,
+                isShowSendButton ? Icons.send : Icons.mic,
                 color: kwhite,
               ),
             ),
