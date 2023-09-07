@@ -16,6 +16,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case SelsectContactScreen.routeName:
       return MaterialPageRoute(builder: (context) => SelsectContactScreen());
 
+
+
     case ChatScreen.routeName:
       final arguments = settings.arguments as Map<String, dynamic>;
       final name = arguments['name'];

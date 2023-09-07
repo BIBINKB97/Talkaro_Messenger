@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:talkaro/features/select_contacts/screens/select_contacts_screen.dart';
 import 'package:talkaro/screens/home_page/widgets/drawer.dart';
-import 'package:talkaro/screens/home_page/widgets/tab1_widgets.dart';
+import 'package:talkaro/screens/home_page/widgets/contact_list_tab1.dart';
 import 'package:talkaro/screens/home_page/widgets/tab2_widgets.dart';
 import 'package:talkaro/screens/home_page/widgets/tab_style.dart';
 
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         body: TabBarView(children: const [
-          ChatsTab(),
+          ContactList(),
           CallsTab(),
         ]),
       ),

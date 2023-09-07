@@ -22,10 +22,13 @@ class _BottomTextBoxState extends ConsumerState<BottomTextBox> {
   void sendTextMessege() async {
     if (isShowSendButton) {
       ref.read(chatControllerProvider).sendTextMessege(
-          context,
-           _messegeController.text.trim(),
+            context,
+            _messegeController.text.trim(),
             widget.recieverUserId,
-            );
+          );
+      setState(() {
+        _messegeController.text = '';
+      });
     }
   }
 
@@ -38,7 +41,6 @@ class _BottomTextBoxState extends ConsumerState<BottomTextBox> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      heightFactor: 12.3,
       alignment: Alignment.bottomCenter,
       child: Container(
         decoration: BoxDecoration(
@@ -87,9 +89,12 @@ class _BottomTextBoxState extends ConsumerState<BottomTextBox> {
             CircleAvatar(
               radius: 22,
               backgroundColor: ktheme,
-              child: Icon(
-                isShowSendButton ? Icons.send : Icons.mic,
-                color: kwhite,
+              child: GestureDetector(
+                onTap: sendTextMessege,
+                child: Icon(
+                  isShowSendButton ? Icons.send : Icons.mic,
+                  color: kwhite,
+                ),
               ),
             ),
             kwidth20

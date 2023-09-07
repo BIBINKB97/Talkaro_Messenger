@@ -20,6 +20,35 @@ class ChatRepository {
     required this.firestore,
     required this.auth,
   });
+
+  Stream<List<ChatContact>> getChatContacts() {
+    return firestore
+        .collection('users')
+        .doc(auth.currentUser!.uid)
+        .collection('chats')
+        .snapshots()
+        .asyncMap((event) async {
+      List<ChatContact> contacts = [];
+      for (var document in event.docs) {
+        var chatContact = ChatContact.fromMap(document.data());
+        var userData = await firestore
+            .collection('users')
+            .doc(chatContact.contactId)
+            .get();
+
+        var user = UserModel.fromMap(userData.data()!);
+
+        contacts.add(ChatContact(
+            name: user.name,
+            profilePic: user.profilePic,
+            contactId: chatContact.contactId,
+            timeSent: chatContact.timeSent,
+            lastMessege: chatContact.lastMessege));
+      }
+      return contacts;
+    });
+  }
+
   void _saveDataToContactsSubCollection(
     UserModel sendersUserData,
     UserModel reciverUserData,
@@ -105,6 +134,7 @@ class ChatRepository {
     try {
       var timeSent = DateTime.now();
       UserModel reciverUserData;
+
       var userDataMap =
           await firestore.collection('users').doc(reciverUserId).get();
       reciverUserData = UserModel.fromMap(userDataMap.data()!);

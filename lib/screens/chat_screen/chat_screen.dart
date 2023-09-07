@@ -23,83 +23,85 @@ class ChatScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60),
-        child: AppBar(
-          backgroundColor: ktheme,
-          elevation: 0,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: CircleAvatar(
-              backgroundImage: AssetImage(
-                "images/user.png",
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(60),
+          child: AppBar(
+            backgroundColor: ktheme,
+            elevation: 0,
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: CircleAvatar(
+                backgroundImage: AssetImage(
+                  "images/user.png",
+                ),
               ),
             ),
-          ),
-          title: InkWell(
-            onTap: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => ViewProfile())),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                StreamBuilder<UserModel>(
-                    stream: ref.read(authControllerProvider).userDataById(uid),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Loader();
-                      }
-                      return Column(
-                        children: [
-                          AppBarTitle(title: name),
-                          Text(
-                            snapshot.data!.isOnline ? 'online' : 'offline',
-                            style: TextStyle(color: kwhite, fontSize: 16),
-                          )
-                        ],
-                      );
-                    }),
-              ],
-            ),
-          ),
-          actions: [
-            Padding(
-              padding: EdgeInsets.only(right: 10.0),
-              child: Row(
-                children: const [
-                  Icon(
-                    Icons.call_rounded,
-                    color: kwhite,
-                  ),
-                  kwidth20,
-                  Icon(
-                    Icons.videocam_rounded,
-                    color: kwhite,
-                  ),
-                  kwidth20,
-                  Icon(
-                    Icons.more_vert,
-                    color: kwhite,
-                  ),
+            title: InkWell(
+              onTap: () => Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => ViewProfile())),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  StreamBuilder<UserModel>(
+                      stream:
+                          ref.read(authControllerProvider).userDataById(uid),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Loader();
+                        }
+                        return Column(
+                          children: [
+                            AppBarTitle(title: name),
+                            Text(
+                              snapshot.data!.isOnline ? 'online' : 'offline',
+                              style: TextStyle(color: kwhite, fontSize: 16),
+                            )
+                          ],
+                        );
+                      }),
                 ],
               ),
-            )
-          ],
+            ),
+            actions: const [
+              Padding(
+                padding: EdgeInsets.only(right: 10.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.call_rounded,
+                      color: kwhite,
+                    ),
+                    kwidth20,
+                    Icon(
+                      Icons.videocam_rounded,
+                      color: kwhite,
+                    ),
+                    kwidth20,
+                    Icon(
+                      Icons.more_vert,
+                      color: kwhite,
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
+        body: Stack(
           children: [
-            Center(child: Text("today")),
-            Stack(
-              children: [
-                BottomTextBox(  recieverUserId: uid),
-                ChatList(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Center(
+                  child: Text('today'),
+                ),
               ],
             ),
+            SingleChildScrollView(child: ChatList()),
+            BottomTextBox(recieverUserId: uid)
           ],
-        ),
-      ),
-    );
+        ));
   }
 }

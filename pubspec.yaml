@@ -41,6 +41,7 @@ dependencies:
   hive: any
   hive_flutter: any
   image_picker: any
+  intl: ^0.18.1
   lottie: null
   shared_preferences: any
   uuid: ^4.0.0
