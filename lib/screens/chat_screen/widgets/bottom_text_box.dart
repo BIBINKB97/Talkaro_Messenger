@@ -22,13 +22,14 @@ class _BottomTextBoxState extends ConsumerState<BottomTextBox> {
   void sendTextMessege() async {
     if (isShowSendButton) {
       ref.read(chatControllerProvider).sendTextMessege(
-            context,
-            _messegeController.text.trim(),
-            widget.recieverUserId,
+            context: context,
+            recieverUserId: widget.recieverUserId,
+            text: _messegeController.text,
           );
-      setState(() {
-        _messegeController.text = '';
-      });
+      _messegeController.clear();
+      // setState(() {
+      //   _messegeController.text = '';
+      // });
     }
   }
 
@@ -61,6 +62,7 @@ class _BottomTextBoxState extends ConsumerState<BottomTextBox> {
             kwidth10,
             Expanded(
               child: TextFormField(
+                controller: _messegeController,
                 onChanged: (val) {
                   if (val.isNotEmpty) {
                     setState(() {

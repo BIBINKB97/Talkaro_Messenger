@@ -56,6 +56,7 @@ class ChatRepository {
         .collection('chats')
         .doc(recieverUserId)
         .collection('messeges')
+        .orderBy('timeSent')
         .snapshots()
         .map((event) {
       List<Messege> messeges = [];
@@ -65,6 +66,10 @@ class ChatRepository {
       return messeges;
     });
   }
+  // Stream<List<QuerySnapshot> getChatStream(String recieverUserId)async {
+
+  //   QuerySnapshot snapshot=await FirebaseFirestore.instance.collection('')
+  // }
 
   void _saveDataToContactsSubCollection(
     UserModel sendersUserData,

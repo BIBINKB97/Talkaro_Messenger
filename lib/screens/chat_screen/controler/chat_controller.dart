@@ -31,7 +31,9 @@ class ChatController {
   }
 
   void sendTextMessege(
-      BuildContext context, String text, String recieverUserId) {
+      {required BuildContext context,
+      required String text,
+      required String recieverUserId}) {
     ref.read(userDataAuthProvider).whenData(
           (value) => chatRepository.sendTextMessege(
             context: context,

@@ -44,6 +44,7 @@ dependencies:
   intl: ^0.18.1
   lottie: null
   shared_preferences: any
+  swipe_to: ^1.0.2
   uuid: ^4.0.0
 
 dev_dependencies:
