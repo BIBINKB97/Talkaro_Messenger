@@ -99,7 +99,9 @@ class ChatScreen extends ConsumerWidget {
                 ),
               ],
             ),
-            SingleChildScrollView(child: ChatList()),
+            SingleChildScrollView(child: ChatList(
+              recieverUserId: uid,
+            )),
             BottomTextBox(recieverUserId: uid)
           ],
         ));
