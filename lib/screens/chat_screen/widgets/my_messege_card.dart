@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:talkaro/common/enums/messege_enum.dart';
-import 'package:talkaro/screens/chat_screen/widgets/display_files_and_text.dart';
+import 'package:talkaro/screens/chat_screen/widgets/display_text_and_files.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
 
@@ -36,17 +36,24 @@ class MyMessageCard extends StatelessWidget {
           child: Stack(
             children: [
               Padding(
-                padding: EdgeInsets.only(
-                  left: 10,
-                  right: 30,
-                  top: 5,
-                  bottom: 10,
-                ),
+                padding: type == MessegeEnum.text
+                    ? EdgeInsets.only(
+                        left: 10,
+                        right: 30,
+                        top: 5,
+                        bottom: 10,
+                      )
+                    : EdgeInsets.only(
+                        bottom: 10,
+                        left: 5,
+                        right: 5,
+                        top: 5,
+                      ),
                 child: Column(
                   children: [
                     kheight5,
-                    DisplayFilesAndText(
-                      messege: message,
+                    DisplayTextAndFiles(
+                      message: message,
                       type: type,
                     ),
                     kheight5,

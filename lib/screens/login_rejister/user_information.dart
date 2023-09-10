@@ -2,12 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/screens/login_rejister/auth/controller/auth_controller.dart';
 import 'package:talkaro/screens/profile/edit_profile/widgets.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
 import 'package:talkaro/utils/main_widgets.dart';
-import 'package:talkaro/utils/snack_bar.dart';
 
 class UserInformationScreen extends ConsumerStatefulWidget {
   static const String routeName = '/user-informationScreen';

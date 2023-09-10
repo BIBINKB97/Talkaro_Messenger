@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/enums/messege_enum.dart';
+import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/screens/chat_screen/controler/chat_controller.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
-import 'package:talkaro/utils/snack_bar.dart';
 
 class BottomTextBox extends ConsumerStatefulWidget {
   final String recieverUserId;
@@ -53,6 +53,13 @@ class _BottomTextBoxState extends ConsumerState<BottomTextBox> {
     File? image = await pickImageFromGallery(context);
     if (image != null) {
       sendFileMessege(image, MessegeEnum.image);
+    }
+  }
+
+  void selectVideo() async {
+    File? video = await pickVideoFromGallery(context);
+    if (video != null) {
+      sendFileMessege(video, MessegeEnum.video);
     }
   }
 
@@ -111,8 +118,11 @@ class _BottomTextBoxState extends ConsumerState<BottomTextBox> {
                 )),
             Transform.rotate(
               angle: 47 * (99 / 179),
-              child: Icon(
-                Icons.attach_file,
+              child: IconButton(
+                onPressed: selectVideo,
+                icon: Icon(
+                  Icons.attach_file,
+                ),
                 color: kgrey,
               ),
             ),

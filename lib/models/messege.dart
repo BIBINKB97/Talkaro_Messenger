@@ -35,7 +35,7 @@ class Messege {
       senderId: map['senderId'] ?? '',
       recieverid: map['recieverid'] ?? '',
       text: map['text'] ?? '',
-      type:( map['text'] as String).toEnum(),
+      type:( map['type'] as String).toEnum(),
       timeSent: DateTime.fromMillisecondsSinceEpoch(map['timeSent']),
       messegeId: map['messegeId'] ?? '',
       isSeen: map['isSeen'] ?? false,

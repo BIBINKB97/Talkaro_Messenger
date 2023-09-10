@@ -1,15 +1,15 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/enums/messege_enum.dart';
 import 'package:talkaro/common/repositories/common_firebase_storage_repository.dart';
+import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/models/chat_contact.dart';
 import 'package:talkaro/models/messege.dart';
 import 'package:talkaro/models/user_model.dart';
-import 'package:talkaro/utils/snack_bar.dart';
+
 import 'package:uuid/uuid.dart';
 
 final chatRepositoryProvider = Provider((ref) => ChatRepository(
@@ -212,7 +212,7 @@ class ChatRepository {
           contactMsg = '📷 Photo';
           break;
         case MessegeEnum.video:
-          contactMsg = '📸 Video';
+          contactMsg = '📹 Video';
           break;
         case MessegeEnum.audio:
           contactMsg = '🎵 Audio';

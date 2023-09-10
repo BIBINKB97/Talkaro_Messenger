@@ -1,11 +1,11 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/screens/login_rejister/auth/controller/auth_controller.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
 import 'package:talkaro/utils/main_widgets.dart';
-import 'package:talkaro/utils/snack_bar.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   static const routeName = '/login-Screen';

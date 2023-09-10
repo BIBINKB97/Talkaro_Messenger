@@ -1,15 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:talkaro/common/enums/messege_enum.dart';
+import 'package:talkaro/info.dart';
+import 'package:talkaro/screens/chat_screen/widgets/vido_player.dart';
 import 'package:talkaro/utils/colors.dart';
 
-class DisplayFilesAndText extends StatelessWidget {
-  final String messege;
+class DisplayTextAndFiles extends StatelessWidget {
+  final String message;
   final MessegeEnum type;
 
-  const DisplayFilesAndText({
+  const DisplayTextAndFiles({
     super.key,
-    required this.messege,
+    required this.message,
     required this.type,
   });
 
@@ -17,9 +19,13 @@ class DisplayFilesAndText extends StatelessWidget {
   Widget build(BuildContext context) {
     return type == MessegeEnum.text
         ? Text(
-            messege,
+            message,
             style: TextStyle(fontSize: 16, color: kwhite),
           )
-        : CachedNetworkImage(imageUrl: messege);
+        : type == MessegeEnum.video
+            ? VideoPlayerItem(videoUrl: message)
+            : CachedNetworkImage(
+                imageUrl: message,
+              );
   }
 }
