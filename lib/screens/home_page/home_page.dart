@@ -1,21 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/features/select_contacts/screens/select_contacts_screen.dart';
 import 'package:talkaro/screens/home_page/widgets/drawer.dart';
 import 'package:talkaro/screens/home_page/widgets/contact_list_tab1.dart';
 import 'package:talkaro/screens/home_page/widgets/tab2_widgets.dart';
 import 'package:talkaro/screens/home_page/widgets/tab_style.dart';
+import 'package:talkaro/screens/login_rejister/auth/controller/auth_controller.dart';
 
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/main_widgets.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends ConsumerState<HomePage>
+    with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+     WidgetsBinding.instance.removeObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    switch (state) {
+      case AppLifecycleState.resumed:
+        ref.read(authControllerProvider).setUserState(true);
+        break;
+
+      case AppLifecycleState.inactive:
+      case AppLifecycleState.detached:
+      case AppLifecycleState.paused:
+        ref.read(authControllerProvider).setUserState(false);
+        break;
+      case AppLifecycleState.hidden:
+        // TODO: Handle this case.
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

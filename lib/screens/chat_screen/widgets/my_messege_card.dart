@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:talkaro/common/enums/messege_enum.dart';
+import 'package:talkaro/screens/chat_screen/widgets/display_files_and_text.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
 
 class MyMessageCard extends StatelessWidget {
   final String message;
   final String date;
+  final MessegeEnum type;
 
   const MyMessageCard({
     Key? key,
     required this.message,
     required this.date,
+    required this.type,
   }) : super(key: key);
 
   @override
@@ -27,7 +31,7 @@ class MyMessageCard extends StatelessWidget {
                   bottomLeft: Radius.circular(10),
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10))),
-          color: klight2,
+          color: ktheme,
           margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
           child: Stack(
             children: [
@@ -41,14 +45,11 @@ class MyMessageCard extends StatelessWidget {
                 child: Column(
                   children: [
                     kheight5,
-                    Text(
-                      message,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: kwhite,
-                      ),
+                    DisplayFilesAndText(
+                      messege: message,
+                      type: type,
                     ),
-                    const SizedBox(height: 8),
+                    kheight5,
                   ],
                 ),
               ),

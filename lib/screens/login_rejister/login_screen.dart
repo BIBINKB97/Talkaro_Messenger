@@ -35,7 +35,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         });
   }
 
-  void sendPhoneNumber() {
+  void   sendPhoneNumber() {
     String phoneNumber = phoneController.text.trim();
     if (country != null && phoneNumber.isNotEmpty) {
       ref

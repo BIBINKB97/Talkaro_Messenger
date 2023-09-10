@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:talkaro/utils/colors.dart';
+import 'package:talkaro/utils/constants.dart';
 
 class SenderMessageCard extends StatelessWidget {
   const SenderMessageCard({
@@ -20,44 +21,49 @@ class SenderMessageCard extends StatelessWidget {
         ),
         child: Card(
           elevation: 1,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          color: klight1,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(10),
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10))),
+          color: klight2,
           margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
           child: Stack(
             children: [
               Padding(
                 padding: EdgeInsets.only(
-                  left: 5,
+                  left: 10,
+                  right: 30,
                   top: 5,
-                  right: 5,
-                  bottom: 25,
+                  bottom: 10,
                 ),
                 child: Column(
                   children: [
-                    const SizedBox(height: 3),
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: kwhite.withOpacity(0.5),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(
-                            5,
-                          ),
-                        ),
+                    kheight5,
+                    Text(
+                      message,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: kwhite,
                       ),
                     ),
+                    const SizedBox(height: 8),
                   ],
                 ),
               ),
               Positioned(
-                bottom: 2,
-                right: 10,
-                child: Text(
-                  date,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.grey[600],
-                  ),
+                bottom: 4,
+                right: 5,
+                child: Row(
+                  children: [
+                    Text(
+                      date,
+                      style: const TextStyle(
+                        fontSize: 10,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

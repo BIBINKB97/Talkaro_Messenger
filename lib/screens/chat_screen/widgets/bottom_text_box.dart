@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:talkaro/common/enums/messege_enum.dart';
 import 'package:talkaro/screens/chat_screen/controler/chat_controller.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
+import 'package:talkaro/utils/snack_bar.dart';
 
 class BottomTextBox extends ConsumerStatefulWidget {
   final String recieverUserId;
@@ -22,14 +26,33 @@ class _BottomTextBoxState extends ConsumerState<BottomTextBox> {
   void sendTextMessege() async {
     if (isShowSendButton) {
       ref.read(chatControllerProvider).sendTextMessege(
-            context: context,
-            recieverUserId: widget.recieverUserId,
-            text: _messegeController.text,
+            context,
+            _messegeController.text.trim(),
+            widget.recieverUserId,
           );
       _messegeController.clear();
-      // setState(() {
-      //   _messegeController.text = '';
-      // });
+      setState(() {
+        _messegeController.text = '';
+      });
+    }
+  }
+
+  void sendFileMessege(
+    File file,
+    MessegeEnum messegeEnum,
+  ) {
+    ref.read(chatControllerProvider).sendFileMessege(
+          context,
+          file,
+          widget.recieverUserId,
+          messegeEnum,
+        );
+  }
+
+  void selectImage() async {
+    File? image = await pickImageFromGallery(context);
+    if (image != null) {
+      sendFileMessege(image, MessegeEnum.image);
     }
   }
 
@@ -80,6 +103,12 @@ class _BottomTextBoxState extends ConsumerState<BottomTextBox> {
                     border: InputBorder.none),
               ),
             ),
+            IconButton(
+                onPressed: selectImage,
+                icon: Icon(
+                  Icons.camera_alt_outlined,
+                  color: kgrey,
+                )),
             Transform.rotate(
               angle: 47 * (99 / 179),
               child: Icon(

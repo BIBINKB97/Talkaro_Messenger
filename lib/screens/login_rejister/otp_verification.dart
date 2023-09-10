@@ -38,7 +38,6 @@ class OTPScreen extends ConsumerWidget {
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 140.0),
         child: TextField(
-          
           textAlign: TextAlign.center,
           keyboardType: TextInputType.number,
           onChanged: (val) {
@@ -47,7 +46,6 @@ class OTPScreen extends ConsumerWidget {
             }
           },
           decoration: InputDecoration(
-            
             hintText: '-  -  -  -  -  -',
             hintStyle: TextStyle(fontSize: 30),
           ),

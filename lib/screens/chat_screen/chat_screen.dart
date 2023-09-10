@@ -89,19 +89,13 @@ class ChatScreen extends ConsumerWidget {
             ],
           ),
         ),
-        body: Stack(
+        body: Column(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Center(
-                  child: Text('today'),
-                ),
-              ],
+            Expanded(
+              child: ChatList(
+                recieverUserId: uid,
+              ),
             ),
-            SingleChildScrollView(child: ChatList(
-              recieverUserId: uid,
-            )),
             BottomTextBox(recieverUserId: uid)
           ],
         ));

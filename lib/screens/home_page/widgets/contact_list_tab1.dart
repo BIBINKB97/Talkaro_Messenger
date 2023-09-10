@@ -38,7 +38,7 @@ class ContactList extends ConsumerWidget {
                   child: ChatTile(
                     profilePic: NetworkImage(chatContactData.profilePic),
                     name: chatContactData.name,
-                    message: chatContactData.lastMessege,
+                    messege: chatContactData.lastMessege,
                     time: DateFormat.Hm().format(chatContactData.timeSent),
                   ),
                 );

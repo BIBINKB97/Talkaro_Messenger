@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:talkaro/common/enums/messege_enum.dart';
 import 'package:talkaro/models/chat_contact.dart';
 import 'package:talkaro/models/messege.dart';
 import 'package:talkaro/screens/chat_screen/repositories/chat_repository.dart';
@@ -16,7 +19,6 @@ final chatControllerProvider = Provider((ref) {
 class ChatController {
   final ChatRepository chatRepository;
   final ProviderRef ref;
-
   ChatController({
     required this.chatRepository,
     required this.ref,
@@ -31,15 +33,34 @@ class ChatController {
   }
 
   void sendTextMessege(
-      {required BuildContext context,
-      required String text,
-      required String recieverUserId}) {
+    BuildContext context,
+    String text,
+    String recieverUserId,
+  ) {
     ref.read(userDataAuthProvider).whenData(
           (value) => chatRepository.sendTextMessege(
             context: context,
             text: text,
             reciverUserId: recieverUserId,
             senderUser: value!,
+          ),
+        );
+  }
+
+  void sendFileMessege(
+    BuildContext context,
+    File file,
+    String recieverUserId,
+    MessegeEnum messegeEnum,
+  ) {
+    ref.read(userDataAuthProvider).whenData(
+          (value) => chatRepository.sendFileMessege(
+            context: context,
+            file: file,
+            recieverUserId: recieverUserId,
+            senderUserData: value!,
+            messegeEnum: messegeEnum,
+            ref: ref,
           ),
         );
   }
