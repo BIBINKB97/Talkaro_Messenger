@@ -52,6 +52,7 @@ class ChatScreen extends ConsumerWidget {
                           return Loader();
                         }
                         return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AppBarTitle(title: name),
                             Text(

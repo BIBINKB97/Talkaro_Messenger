@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/screens/login_rejister/user_information.dart';
+import 'package:talkaro/screens/splash_screen/splash_screen.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
 
@@ -83,7 +84,8 @@ class CustomDrawer extends StatelessWidget {
               FirebaseAuth.instance.signOut();
               ShowSnackBar(
                   context: context, content: 'You have been signed out !');
-                  Navigator.pop(context);
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => SplashScreen()));
             },
           ),
         ],

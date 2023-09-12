@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:talkaro/common/enums/messege_enum.dart';
-import 'package:talkaro/info.dart';
 import 'package:talkaro/screens/chat_screen/widgets/vido_player.dart';
 import 'package:talkaro/utils/colors.dart';
 

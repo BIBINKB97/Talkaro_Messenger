@@ -19,7 +19,7 @@ class ViewProfile extends StatelessWidget {
       body: SingleChildScrollView(
         child: Center(
           child: Column(
-            children: [
+            children: const [
               kheight80,
               CircleAvatar(
                 backgroundImage: AssetImage("images/Jins.jpeg"),
@@ -42,7 +42,7 @@ class ViewProfile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Column(
-                    children: const [
+                    children: [
                       ThreeButtons(
                         icon: Icon(
                           Icons.message_outlined,
@@ -55,8 +55,9 @@ class ViewProfile extends StatelessWidget {
                   ),
                   kwidth30,
                   Column(
-                    children:  const [
+                    children: [
                       ThreeButtons(
+                        
                         icon: Icon(
                           Icons.call_outlined,
                           size: 30,
@@ -68,7 +69,7 @@ class ViewProfile extends StatelessWidget {
                   ),
                   kwidth30,
                   Column(
-                    children: const[
+                    children: [
                       ThreeButtons(
                         icon: Icon(
                           Icons.videocam_outlined,

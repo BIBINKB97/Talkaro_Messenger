@@ -9,7 +9,6 @@ import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/models/chat_contact.dart';
 import 'package:talkaro/models/messege.dart';
 import 'package:talkaro/models/user_model.dart';
-
 import 'package:uuid/uuid.dart';
 
 final chatRepositoryProvider = Provider((ref) => ChatRepository(
