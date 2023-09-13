@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  audioplayers: ^5.1.0
   cached_network_image: ^3.2.3
   cached_video_player: ^2.0.4
   cloud_firestore: any
@@ -41,14 +42,17 @@ dependencies:
     sdk: flutter
   flutter_contacts: any
   flutter_riverpod: any
+  flutter_sound: ^9.2.13
   hive: any
   hive_flutter: any
   image_picker: any
   intl: ^0.18.1
   lottie: null
+  path_provider: ^2.1.1
+  permission_handler: ^9.2.0
   shared_preferences: any
   swipe_to: ^1.0.2
-  uuid: ^4.0.0
+  uuid: ^3.0.7
 
 dev_dependencies:
   flutter_lints: any

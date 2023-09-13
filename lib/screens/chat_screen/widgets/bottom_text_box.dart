@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_sound/flutter_sound.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:talkaro/common/enums/messege_enum.dart';
 import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/screens/chat_screen/controler/chat_controller.dart';
@@ -10,7 +13,7 @@ import 'package:talkaro/utils/colors.dart';
 
 class BottomTextBox extends ConsumerStatefulWidget {
   final String recieverUserId;
-  BottomTextBox({
+  const BottomTextBox({
     super.key,
     required this.recieverUserId,
   });
@@ -22,8 +25,27 @@ class BottomTextBox extends ConsumerStatefulWidget {
 class _BottomTextBoxState extends ConsumerState<BottomTextBox> {
   bool isShowSendButton = false;
   final TextEditingController _messegeController = TextEditingController();
+  FlutterSoundRecorder? _soundRecorder;
+  bool isRecorderInit = false;
   bool isShowEmojiContainer = false;
+  bool isRecording = false;
   FocusNode focusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _soundRecorder = FlutterSoundRecorder();
+    openAudio();
+  }
+
+  void openAudio() async {
+    final status = await Permission.microphone.request();
+    if (status != PermissionStatus.granted) {
+      throw RecordingPermissionException('Mic permission not allowed !');
+    }
+    await _soundRecorder!.openRecorder();
+    isRecorderInit = true;
+  }
 
   void sendTextMessege() async {
     if (isShowSendButton) {
@@ -35,6 +57,24 @@ class _BottomTextBoxState extends ConsumerState<BottomTextBox> {
       _messegeController.clear();
       setState(() {
         _messegeController.text = '';
+      });
+    } else {
+      var tempDir = await getTemporaryDirectory();
+      var path = '${tempDir.path}/flutter_sound.aac';
+      if (!isRecorderInit) {
+        return;
+      }
+      if (isRecording) {
+        await _soundRecorder!.stopRecorder();
+        sendFileMessege(File(path), MessegeEnum.audio);
+      } else {
+        await _soundRecorder!.startRecorder(
+          toFile: path,
+        );
+      }
+
+      setState(() {
+        isRecording = !isRecording;
       });
     }
   }
@@ -94,6 +134,8 @@ class _BottomTextBoxState extends ConsumerState<BottomTextBox> {
   void dispose() {
     super.dispose();
     _messegeController.dispose();
+    _soundRecorder!.closeRecorder();
+    isRecorderInit = false;
   }
 
   @override
@@ -179,7 +221,11 @@ class _BottomTextBoxState extends ConsumerState<BottomTextBox> {
                 child: GestureDetector(
                   onTap: sendTextMessege,
                   child: Icon(
-                    isShowSendButton ? Icons.send : Icons.mic,
+                    isShowSendButton
+                        ? Icons.send
+                        : isRecording
+                            ? Icons.close
+                            : Icons.mic,
                     color: kwhite,
                   ),
                 ),
