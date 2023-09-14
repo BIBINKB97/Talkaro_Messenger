@@ -8,12 +8,20 @@ class MyMessageCard extends StatelessWidget {
   final String message;
   final String date;
   final MessegeEnum type;
+  final VoidCallback onLeftSwipe;
+  final String repliedText;
+  final String username;
+  final MessegeEnum repliedMessegeType;
 
   const MyMessageCard({
     Key? key,
     required this.message,
     required this.date,
     required this.type,
+    required this.onLeftSwipe,
+    required this.repliedText,
+    required this.username,
+    required this.repliedMessegeType,
   }) : super(key: key);
 
   @override

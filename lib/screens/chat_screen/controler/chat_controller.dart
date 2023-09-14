@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/enums/messege_enum.dart';
+import 'package:talkaro/common/providers/message_replay_provider.dart';
 import 'package:talkaro/models/chat_contact.dart';
 import 'package:talkaro/models/messege.dart';
 import 'package:talkaro/screens/chat_screen/repositories/chat_repository.dart';
@@ -37,12 +38,14 @@ class ChatController {
     String text,
     String recieverUserId,
   ) {
+    final messageReplay = ref.read(messageReplyProvider);
     ref.read(userDataAuthProvider).whenData(
           (value) => chatRepository.sendTextMessege(
             context: context,
             text: text,
             reciverUserId: recieverUserId,
             senderUser: value!,
+            messageReplay: messageReplay,
           ),
         );
   }
@@ -53,6 +56,7 @@ class ChatController {
     String recieverUserId,
     MessegeEnum messegeEnum,
   ) {
+      final messageReplay = ref.read(messageReplyProvider);
     ref.read(userDataAuthProvider).whenData(
           (value) => chatRepository.sendFileMessege(
             context: context,
@@ -61,6 +65,7 @@ class ChatController {
             senderUserData: value!,
             messegeEnum: messegeEnum,
             ref: ref,
+            messageReplay: messageReplay
           ),
         );
   }

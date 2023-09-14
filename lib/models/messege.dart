@@ -8,6 +8,9 @@ class Messege {
   final DateTime timeSent;
   final String messegeId;
   final bool isSeen;
+  final String repliedMessage;
+  final String repliedTo;
+  final MessegeEnum repliedMessageType;
 
   Messege({
     required this.senderId,
@@ -17,6 +20,9 @@ class Messege {
     required this.timeSent,
     required this.messegeId,
     required this.isSeen,
+    required this.repliedMessage,
+    required this.repliedTo,
+    required this.repliedMessageType,
   });
   Map<String, dynamic> toMap() {
     return {
@@ -27,6 +33,9 @@ class Messege {
       'timeSent': timeSent.millisecondsSinceEpoch,
       'messegeId': messegeId,
       'isSeen': isSeen,
+      'repliedMessage': repliedMessage,
+      'repliedTo': repliedTo,
+      'repliedMessageType':repliedMessageType.type,
     };
   }
 
@@ -35,10 +44,13 @@ class Messege {
       senderId: map['senderId'] ?? '',
       recieverid: map['recieverid'] ?? '',
       text: map['text'] ?? '',
-      type:( map['type'] as String).toEnum(),
+      type: (map['type'] as String).toEnum(),
       timeSent: DateTime.fromMillisecondsSinceEpoch(map['timeSent']),
       messegeId: map['messegeId'] ?? '',
       isSeen: map['isSeen'] ?? false,
+      repliedMessage: map['repliedTo'] ?? '',
+      repliedTo: map['repliedTo'] ?? '',
+      repliedMessageType: (map['repliedMessageType'] as String).toEnum(),
     );
   }
 }

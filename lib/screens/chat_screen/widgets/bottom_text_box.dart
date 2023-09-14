@@ -7,8 +7,10 @@ import 'package:flutter_sound/flutter_sound.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:talkaro/common/enums/messege_enum.dart';
+import 'package:talkaro/common/providers/message_replay_provider.dart';
 import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/screens/chat_screen/controler/chat_controller.dart';
+import 'package:talkaro/screens/chat_screen/widgets/message_replay_preview.dart';
 import 'package:talkaro/utils/colors.dart';
 
 class BottomTextBox extends ConsumerStatefulWidget {
@@ -140,8 +142,11 @@ class _BottomTextBoxState extends ConsumerState<BottomTextBox> {
 
   @override
   Widget build(BuildContext context) {
+    final messageReplay = ref.watch(messageReplyProvider);
+    final isShowMessageReplay = messageReplay != null;
     return Column(
       children: [
+        isShowMessageReplay ? MessageReplayPreview() : SizedBox(),
         Row(
           children: [
             Expanded(
