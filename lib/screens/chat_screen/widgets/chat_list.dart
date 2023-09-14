@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:talkaro/common/enums/messege_enum.dart';
+import 'package:talkaro/common/providers/message_replay_provider.dart';
 import 'package:talkaro/common/widgets/loader.dart';
 import 'package:talkaro/models/messege.dart';
 import 'package:talkaro/screens/chat_screen/controler/chat_controller.dart';
@@ -24,6 +26,18 @@ class _ChatListState extends ConsumerState<ChatList> {
   void dispose() {
     super.dispose();
     messageController.dispose();
+  }
+
+  void onMessageSwipe(
+    String message,
+    bool isMe,
+    MessegeEnum messegeEnum,
+  ) {
+    ref.read(messageReplyProvider.state).update((state) => MessageReplay(
+          message: message,
+          isMe: isMe,
+          messegeEnum: messegeEnum,
+        ));
   }
 
   @override
@@ -54,16 +68,28 @@ class _ChatListState extends ConsumerState<ChatList> {
                   message: messegeData.text,
                   date: timeSent,
                   type: messegeData.type,
-                  repliedText:messegeData.repliedTo,
+                  repliedText: messegeData.repliedTo,
                   username: messegeData.repliedTo,
                   repliedMessegeType: messegeData.repliedMessageType,
-                  onLeftSwipe: () {},
+                  onLeftSwipe: () => onMessageSwipe(
+                    messegeData.text,
+                    true,
+                    messegeData.type,
+                  ),
                 );
               }
               return SenderMessegeCard(
                 message: messegeData.text,
                 date: timeSent,
                 type: messegeData.type,
+                username: messegeData.repliedTo,
+                  repliedMessegeType: messegeData.repliedMessageType,
+                  onRightSwipe: () => onMessageSwipe(
+                    messegeData.text,
+                    false,
+                    messegeData.type,
+                  ),
+                  repliedText: messegeData.repliedMessage,
               );
             },
           );

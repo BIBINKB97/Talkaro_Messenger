@@ -48,6 +48,8 @@ class ChatController {
             messageReplay: messageReplay,
           ),
         );
+        
+   
   }
 
   void sendFileMessege(
@@ -56,17 +58,17 @@ class ChatController {
     String recieverUserId,
     MessegeEnum messegeEnum,
   ) {
-      final messageReplay = ref.read(messageReplyProvider);
+    final messageReplay = ref.read(messageReplyProvider);
     ref.read(userDataAuthProvider).whenData(
           (value) => chatRepository.sendFileMessege(
-            context: context,
-            file: file,
-            recieverUserId: recieverUserId,
-            senderUserData: value!,
-            messegeEnum: messegeEnum,
-            ref: ref,
-            messageReplay: messageReplay
-          ),
+              context: context,
+              file: file,
+              recieverUserId: recieverUserId,
+              senderUserData: value!,
+              messegeEnum: messegeEnum,
+              ref: ref,
+              messageReplay: messageReplay),
         );
+         ref.read(messageReplyProvider.state).update((state) => null);
   }
 }
