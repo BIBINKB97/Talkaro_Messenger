@@ -6,7 +6,7 @@ import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/models/user_model.dart';
-import 'package:talkaro/screens/chat_screen/chat_screen.dart';
+import 'package:talkaro/features/chat/screens/chat_screen.dart';
 
 
 final selectContactsRepositoryProvider = Provider(
@@ -59,13 +59,13 @@ class SelectContactRepository {
       }
 
       if (!isFound) {
-        ShowSnackBar(
+        showSnackBar(
           context: context,
           content: 'This number does not exist on this app.',
         );
       }
     } catch (e) {
-      ShowSnackBar(context: context, content: e.toString());
+      showSnackBar(context: context, content: e.toString());
     }
   }
 }

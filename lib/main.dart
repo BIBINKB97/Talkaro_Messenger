@@ -5,9 +5,9 @@ import 'package:talkaro/common/widgets/error.dart';
 import 'package:talkaro/common/widgets/loader.dart';
 import 'package:talkaro/firebase_options.dart';
 import 'package:talkaro/router.dart';
-import 'package:talkaro/screens/home_page/home_page.dart';
-import 'package:talkaro/screens/login_rejister/auth/controller/auth_controller.dart';
-import 'package:talkaro/screens/splash_screen/splash_screen.dart';
+import 'package:talkaro/features/home_page/home_page.dart';
+import 'package:talkaro/features/authentication/controller/auth_controller.dart';
+import 'package:talkaro/features/splash_screen/splash_screen.dart';
 
 import 'package:talkaro/utils/colors.dart';
 

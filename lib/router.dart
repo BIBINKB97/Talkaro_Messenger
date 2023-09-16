@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:talkaro/common/widgets/error.dart';
 import 'package:talkaro/features/select_contacts/screens/select_contacts_screen.dart';
-import 'package:talkaro/screens/chat_screen/chat_screen.dart';
-import 'package:talkaro/screens/login_rejister/login_screen.dart';
-import 'package:talkaro/screens/login_rejister/user_information.dart';
+import 'package:talkaro/features/chat/screens/chat_screen.dart';
+import 'package:talkaro/features/login_register/login_screen.dart';
+import 'package:talkaro/features/login_register/user_information.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
