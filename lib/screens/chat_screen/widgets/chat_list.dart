@@ -68,7 +68,7 @@ class _ChatListState extends ConsumerState<ChatList> {
                   message: messegeData.text,
                   date: timeSent,
                   type: messegeData.type,
-                  repliedText: messegeData.repliedTo,
+                  repliedText: messegeData.repliedMessage,
                   username: messegeData.repliedTo,
                   repliedMessegeType: messegeData.repliedMessageType,
                   onLeftSwipe: () => onMessageSwipe(
@@ -83,13 +83,13 @@ class _ChatListState extends ConsumerState<ChatList> {
                 date: timeSent,
                 type: messegeData.type,
                 username: messegeData.repliedTo,
-                  repliedMessegeType: messegeData.repliedMessageType,
-                  onRightSwipe: () => onMessageSwipe(
-                    messegeData.text,
-                    false,
-                    messegeData.type,
-                  ),
-                  repliedText: messegeData.repliedMessage,
+                repliedMessegeType: messegeData.repliedMessageType,
+                onRightSwipe: () => onMessageSwipe(
+                  messegeData.text,
+                  false,
+                  messegeData.type,
+                ),
+                repliedText: messegeData.repliedMessage,
               );
             },
           );

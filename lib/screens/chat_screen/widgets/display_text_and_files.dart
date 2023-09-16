@@ -23,28 +23,45 @@ class DisplayTextAndFiles extends StatelessWidget {
     return type == MessegeEnum.text
         ? Text(
             message,
-            style: TextStyle(fontSize: 16, color: kwhite),
+            style: const TextStyle(
+              color: kwhite,
+              fontSize: 16,
+            ),
           )
         : type == MessegeEnum.audio
             ? StatefulBuilder(builder: (context, setState) {
                 return IconButton(
-                    constraints: BoxConstraints(minWidth: 200),
-                    onPressed: () async {
-                      if (isPlaying) {
-                        await audioPlayer.pause();
-                        setState(() {
-                          isPlaying = false;
-                        });
-                      } else {
-                        await audioPlayer.play(UrlSource(message));
-                      }
-                    },
-                    icon: Icon(isPlaying ? Icons.pause_circle : Icons.play_circle));
+                  constraints: const BoxConstraints(
+                    minWidth: 100,
+                  ),
+                  onPressed: () async {
+                    if (isPlaying) {
+                      await audioPlayer.pause();
+                      setState(() {
+                        isPlaying = false;
+                      });
+                    } else {
+                      await audioPlayer.play(UrlSource(message));
+                      setState(() {
+                        isPlaying = true;
+                      });
+                    }
+                  },
+                  icon: Icon(
+                    isPlaying ? Icons.pause_circle : Icons.play_circle,
+                  ),
+                );
               })
             : type == MessegeEnum.video
-                ? VideoPlayerItem(videoUrl: message)
-                : CachedNetworkImage(
-                    imageUrl: message,
-                  );
+                ? VideoPlayerItem(
+                    videoUrl: message,
+                  )
+                : type == MessegeEnum.gif
+                    ? CachedNetworkImage(
+                        imageUrl: message,
+                      )
+                    : CachedNetworkImage(
+                        imageUrl: message,
+                      );
   }
 }

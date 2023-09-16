@@ -121,7 +121,6 @@ class ChatRepository {
     required MessageReplay? messageReplay,
     required String senderUsername,
     required String recieverUsername,
-
   }) async {
     final messege = Messege(
       senderId: auth.currentUser!.uid,
@@ -129,7 +128,7 @@ class ChatRepository {
       text: text,
       type: messegeType,
       timeSent: timeSent,
-      messegeId: messegeId,
+      messageId: messegeId,
       isSeen: false,
       repliedMessage: messageReplay == null ? '' : messageReplay.message,
       repliedTo: messageReplay == null
@@ -137,9 +136,8 @@ class ChatRepository {
           : messageReplay.isMe
               ? senderUsername
               : recieverUsername,
-               repliedMessageType: messageReplay == null
-            ? MessegeEnum.text
-            : messageReplay.messegeEnum,
+      repliedMessageType:
+          messageReplay == null ? MessegeEnum.text : messageReplay.messegeEnum,
     );
     await firestore
         .collection('users')
@@ -195,25 +193,21 @@ class ChatRepository {
         messageReplay: messageReplay,
         recieverUsername: reciverUserData.name,
         senderUsername: senderUser.name,
-        
-
-       
       );
     } catch (e) {
       ShowSnackBar(context: context, content: e.toString());
     }
   }
 
-  void sendFileMessege({
-    required BuildContext context,
-    required File file,
-    required String recieverUserId,
-    required UserModel senderUserData,
-    required ProviderRef ref,
-    required MessegeEnum messegeEnum,
-    required MessageReplay? messageReplay,
-    required
-  }) async {
+  void sendFileMessege(
+      {required BuildContext context,
+      required File file,
+      required String recieverUserId,
+      required UserModel senderUserData,
+      required ProviderRef ref,
+      required MessegeEnum messegeEnum,
+      required MessageReplay? messageReplay,
+      required}) async {
     try {
       var timeSent = DateTime.now();
       var messageId = Uuid().v1();
@@ -262,7 +256,7 @@ class ChatRepository {
         username: senderUserData.name,
         recieverUserName: recieverUserData.name,
         messegeType: messegeEnum,
-            messageReplay: messageReplay,
+        messageReplay: messageReplay,
         recieverUsername: recieverUserData.name,
         senderUsername: senderUserData.name,
       );

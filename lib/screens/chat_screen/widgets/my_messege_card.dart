@@ -62,28 +62,39 @@ class MyMessageCard extends StatelessWidget {
                           top: 5,
                         ),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      kheight5,
                       if (isReplaying) ...[
-                        Text(
-                          username,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                        kheight5,
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: kblack.withOpacity(0.2),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(
+                                5,
+                              ),
+                            ),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                username,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              kheight5,
+                              DisplayTextAndFiles(
+                                message: repliedText,
+                                type: repliedMessegeType,
+                              ),
+                            ],
                           ),
                         ),
+                        kheight5,
                       ],
-                      kheight5,
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            color: kblack.withOpacity(0.5),
-                            borderRadius: BorderRadius.all(Radius.circular(5))),
-                        child: DisplayTextAndFiles(
-                          message: repliedText,
-                          type: repliedMessegeType,
-                        ),
-                      ),
-                      kheight5,
                       DisplayTextAndFiles(
                         message: message,
                         type: type,

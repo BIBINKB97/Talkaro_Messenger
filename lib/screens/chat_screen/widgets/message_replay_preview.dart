@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/providers/message_replay_provider.dart';
 import 'package:talkaro/screens/chat_screen/widgets/display_text_and_files.dart';
+import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
 
 class MessageReplayPreview extends ConsumerWidget {
@@ -27,22 +28,32 @@ class MessageReplayPreview extends ConsumerWidget {
         children: [
           Row(
             children: [
+              kwidth10,
               Expanded(
                 child: Text(
-                  messageReplay!.isMe ? 'me' : 'opposit',
+                  messageReplay!.isMe ? 'you' : 'opposit',
                 ),
               ),
               GestureDetector(
                 child: Icon(Icons.close),
                 onTap: () => cancelReplay(ref),
-              )
+              ),
+              kwidth10
             ],
           ),
-          kheight10,
-          DisplayTextAndFiles(
-            message: messageReplay.message,
-            type: messageReplay.messegeEnum,
-          )
+          Container(
+            decoration: BoxDecoration(
+              color: klight2,
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: DisplayTextAndFiles(
+                message: messageReplay.message,
+                type: messageReplay.messegeEnum,
+              ),
+            ),
+          ),
         ],
       ),
     );
