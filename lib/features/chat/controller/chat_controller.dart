@@ -48,8 +48,6 @@ class ChatController {
             messageReplay: messageReplay,
           ),
         );
-        
-   
   }
 
   void sendFileMessege(
@@ -69,6 +67,18 @@ class ChatController {
               ref: ref,
               messageReplay: messageReplay),
         );
-         ref.read(messageReplyProvider.state).update((state) => null);
+    ref.read(messageReplyProvider.state).update((state) => null);
+  }
+
+  void setChatMessageSeen(
+    BuildContext context,
+    String revieverUserId,
+    String messageId,
+  ) {
+    chatRepository.setChatMessageSeen(
+      context,
+      revieverUserId,
+      messageId,
+    );
   }
 }

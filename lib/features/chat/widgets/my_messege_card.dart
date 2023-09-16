@@ -13,6 +13,7 @@ class MyMessageCard extends StatelessWidget {
   final String repliedText;
   final String username;
   final MessegeEnum repliedMessegeType;
+  final bool isSeen;
 
   const MyMessageCard({
     Key? key,
@@ -23,6 +24,7 @@ class MyMessageCard extends StatelessWidget {
     required this.repliedText,
     required this.username,
     required this.repliedMessegeType,
+    required this.isSeen,
   }) : super(key: key);
 
   @override
@@ -44,7 +46,7 @@ class MyMessageCard extends StatelessWidget {
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10))),
             color: ktheme,
-            margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
             child: Stack(
               children: [
                 Padding(
@@ -109,11 +111,15 @@ class MyMessageCard extends StatelessWidget {
                     children: [
                       Text(
                         date,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 10,
                           color: Color.fromARGB(255, 255, 255, 255),
                         ),
                       ),
+                      kwidth5,
+                      Icon(isSeen ? Icons.done_all : Icons.done,
+                          size: 15,
+                          color: isSeen ? Colors.blue : Colors.white60),
                     ],
                   ),
                 ),
