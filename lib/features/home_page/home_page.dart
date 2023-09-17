@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:talkaro/features/group_chat/screens/create_group_screen.dart';
 import 'package:talkaro/features/select_contacts/screens/select_contacts_screen.dart';
 import 'package:talkaro/features/home_page/widgets/drawer.dart';
 import 'package:talkaro/features/home_page/widgets/contact_list_tab1.dart';
@@ -28,7 +29,7 @@ class _HomePageState extends ConsumerState<HomePage>
   @override
   void dispose() {
     super.dispose();
-     WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
   }
 
   @override
@@ -85,12 +86,19 @@ class _HomePageState extends ConsumerState<HomePage>
                 ),
                 onPressed: () {},
               ),
-              IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.more_vert,
-                    color: kwhite,
-                  ))
+              PopupMenuButton(
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    child: Text('Create Group'),
+                    onTap: () => Future(
+                      () => Navigator.pushNamed(
+                        context,
+                        CreateGroupScreen.routeName,
+                      ),
+                    ),
+                  ),
+                ],
+              )
             ],
             bottom: TabBar(
                 unselectedLabelColor: kblack,

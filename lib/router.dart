@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:talkaro/common/widgets/error.dart';
+import 'package:talkaro/features/group_chat/screens/create_group_screen.dart';
 import 'package:talkaro/features/select_contacts/screens/select_contacts_screen.dart';
 import 'package:talkaro/features/chat/screens/chat_screen.dart';
 import 'package:talkaro/features/login_register/login_screen.dart';
@@ -26,6 +27,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         name: name,
         uid: uid,
       ));
+
+      case CreateGroupScreen.routeName:
+      return MaterialPageRoute(builder: (context) => CreateGroupScreen());
+   
+   
     default:
       return MaterialPageRoute(
           builder: (context) =>
