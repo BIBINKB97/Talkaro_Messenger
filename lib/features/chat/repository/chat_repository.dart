@@ -63,6 +63,7 @@ class ChatRepository {
           groups.add(group);
         }
       }
+      
       return groups;
     });
   }
