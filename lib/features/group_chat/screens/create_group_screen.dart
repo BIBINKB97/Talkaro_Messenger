@@ -1,21 +1,22 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/utils/utils.dart';
+import 'package:talkaro/features/group_chat/controller/group_controller.dart';
 import 'package:talkaro/features/group_chat/widgets/select_contacts_group.dart';
 import 'package:talkaro/utils/colors.dart';
-import 'package:talkaro/utils/constants.dart';
-import 'package:talkaro/utils/main_widgets.dart';
 
-class CreateGroupScreen extends StatefulWidget {
+
+class CreateGroupScreen extends ConsumerStatefulWidget {
   static const String routeName = '/create-group';
-  const CreateGroupScreen({super.key});
+  const CreateGroupScreen({Key? key}) : super(key: key);
 
   @override
-  State<CreateGroupScreen> createState() => _CreateGroupScreenState();
+  ConsumerState<CreateGroupScreen> createState() => _CreateGroupScreenState();
 }
 
-class _CreateGroupScreenState extends State<CreateGroupScreen> {
+class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
   final TextEditingController groupNameController = TextEditingController();
   File? image;
 
@@ -24,12 +25,18 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
     setState(() {});
   }
 
-void createGroup() {
-  if(groupNameController.text.trim().isNotEmpty && image!=null) {
-
+  void createGroup() {
+    if (groupNameController.text.trim().isNotEmpty && image != null) {
+      ref.read(groupControllerProvider).createGroup(
+            context,
+            groupNameController.text.trim(),
+            image!,
+            ref.read(selectedGroupContacts),
+          );
+      ref.read(selectedGroupContacts.state).update((state) => []);
+      Navigator.pop(context);
+    }
   }
-}
-
 
   @override
   void dispose() {
@@ -41,68 +48,67 @@ void createGroup() {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: AppBarTitle(title: 'Create Group'),
-        centerTitle: true,
-        backgroundColor: ktheme,
-        elevation: 0,
+        title: const Text('Create Group'),
       ),
       body: Center(
-          child: Column(
-        children: [
-          kheight20,
-          Stack(
-            children: [
-              image == null
-                  ? CircleAvatar(
-                      backgroundImage: AssetImage("images/user.png"),
-                      radius: 80,
-                    )
-                  : CircleAvatar(
-                      backgroundImage: FileImage(image!),
-                      radius: 80,
-                    ),
-              Padding(
-                padding: EdgeInsets.only(left: 110.0, top: 120),
-                child: CircleAvatar(
-                  radius: 25,
-                  backgroundColor: ktheme,
+        child: Column(
+          children: [
+            const SizedBox(height: 10),
+            Stack(
+              children: [
+                image == null
+                    ? const CircleAvatar(
+                        backgroundImage: AssetImage('images/user.png'),
+                        radius: 64,
+                      )
+                    : CircleAvatar(
+                        backgroundImage: FileImage(
+                          image!,
+                        ),
+                        radius: 64,
+                      ),
+                Positioned(
+                  bottom: -10,
+                  left: 80,
                   child: IconButton(
                     onPressed: selectImage,
-                    icon: Icon(Icons.add_a_photo_rounded),
-                    color: kwhite,
+                    icon: const Icon(
+                      Icons.add_a_photo,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: TextField(
-              controller: groupNameController,
-              decoration: InputDecoration(
-                hintText: 'Enter Group Name',
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: TextField(
+                controller: groupNameController,
+                decoration: const InputDecoration(
+                  hintText: 'Enter Group Name',
+                ),
               ),
             ),
-          ),
-          Container(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
+            Container(
+              alignment: Alignment.topLeft,
+              padding: const EdgeInsets.all(8),
+              child: const Text(
                 'Select Contacts',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-          ),
-          SelectContactsGroup(),
-        ],
-      )),
+            const SelectContactsGroup(),
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: createGroup,
         backgroundColor: ktheme,
-        child: Icon(
+        child: const Icon(
           Icons.done,
-          color: kwhite,
+          color: Colors.white,
         ),
       ),
     );

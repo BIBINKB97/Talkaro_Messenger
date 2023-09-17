@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/enums/messege_enum.dart';
 import 'package:talkaro/common/providers/message_replay_provider.dart';
 import 'package:talkaro/models/chat_contact.dart';
+import 'package:talkaro/models/group.dart';
 import 'package:talkaro/models/messege.dart';
 import 'package:talkaro/features/chat/repository/chat_repository.dart';
 import 'package:talkaro/features/authentication/controller/auth_controller.dart';
@@ -27,6 +28,9 @@ class ChatController {
 
   Stream<List<ChatContact>> chatContacts() {
     return chatRepository.getChatContacts();
+  }
+   Stream<List<GroupModel>> chatGroups() {
+    return chatRepository.getChatGroups();
   }
 
   Stream<List<Messege>> chatStream(String recieverUserId) {

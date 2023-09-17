@@ -111,7 +111,7 @@ class _HomePageState extends ConsumerState<HomePage>
           ),
         ),
         body: TabBarView(children: const [
-          ContactList(),
+          ContactsList(),
           CallsTab(),
         ]),
       ),

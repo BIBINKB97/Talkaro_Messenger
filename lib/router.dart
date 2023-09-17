@@ -17,21 +17,21 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case SelsectContactScreen.routeName:
       return MaterialPageRoute(builder: (context) => SelsectContactScreen());
 
-
-
     case ChatScreen.routeName:
       final arguments = settings.arguments as Map<String, dynamic>;
       final name = arguments['name'];
       final uid = arguments['uid'];
-      return MaterialPageRoute(builder: (context) => ChatScreen(
-        name: name,
-        uid: uid,
-      ));
+      final isGroupChat = arguments['isGroupChat'];
+      return MaterialPageRoute(
+          builder: (context) => ChatScreen(
+                name: name,
+                uid: uid,
+                isGroupChat: isGroupChat,
+              ));
 
-      case CreateGroupScreen.routeName:
+    case CreateGroupScreen.routeName:
       return MaterialPageRoute(builder: (context) => CreateGroupScreen());
-   
-   
+
     default:
       return MaterialPageRoute(
           builder: (context) =>

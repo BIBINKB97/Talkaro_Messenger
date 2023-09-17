@@ -8,6 +8,7 @@ import 'package:talkaro/common/providers/message_replay_provider.dart';
 import 'package:talkaro/common/repositories/common_firebase_storage_repository.dart';
 import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/models/chat_contact.dart';
+import 'package:talkaro/models/group.dart';
 import 'package:talkaro/models/messege.dart';
 import 'package:talkaro/models/user_model.dart';
 import 'package:uuid/uuid.dart';
@@ -50,6 +51,19 @@ class ChatRepository {
         ));
       }
       return contacts;
+    });
+  }
+
+  Stream<List<GroupModel>> getChatGroups() {
+    return firestore.collection('groups').snapshots().map((event) {
+      List<GroupModel> groups = [];
+      for (var document in event.docs) {
+        var group = GroupModel.fromMap(document.data());
+        if (group.membersUid.contains(auth.currentUser!.uid)) {
+          groups.add(group);
+        }
+      }
+      return groups;
     });
   }
 

@@ -2,7 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:talkaro/common/enums/messege_enum.dart';
-import 'package:talkaro/features/chat/widgets/vido_player.dart';
+import 'package:talkaro/features/chat/widgets/video_player.dart';
 import 'package:talkaro/utils/colors.dart';
 
 class DisplayTextAndFiles extends StatelessWidget {

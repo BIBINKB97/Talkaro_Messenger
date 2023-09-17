@@ -14,10 +14,12 @@ class ChatScreen extends ConsumerWidget {
   static const String routeName = '/inbox-screen';
   final String name;
   final String uid;
+  final bool isGroupChat;
   const ChatScreen({
     super.key,
     required this.name,
     required this.uid,
+    required this.isGroupChat
   });
 
   @override
@@ -36,7 +38,7 @@ class ChatScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            title: InkWell(
+            title: isGroupChat? AppBarTitle(title: name) : InkWell(
               onTap: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => ViewProfile())),
               child: Column(
