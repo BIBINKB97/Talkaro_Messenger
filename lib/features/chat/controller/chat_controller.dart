@@ -29,7 +29,8 @@ class ChatController {
   Stream<List<ChatContact>> chatContacts() {
     return chatRepository.getChatContacts();
   }
-   Stream<List<GroupModel>> chatGroups() {
+
+  Stream<List<GroupModel>> chatGroups() {
     return chatRepository.getChatGroups();
   }
 
@@ -37,10 +38,15 @@ class ChatController {
     return chatRepository.getChatStream(recieverUserId);
   }
 
+  Stream<List<Messege>> groupchatStream(String gorupId) {
+    return chatRepository.getGroupChatStream(gorupId);
+  }
+
   void sendTextMessege(
     BuildContext context,
     String text,
     String recieverUserId,
+    bool isGroupChat,
   ) {
     final messageReplay = ref.read(messageReplyProvider);
     ref.read(userDataAuthProvider).whenData(
@@ -50,6 +56,7 @@ class ChatController {
             reciverUserId: recieverUserId,
             senderUser: value!,
             messageReplay: messageReplay,
+            isGroupChat: isGroupChat,
           ),
         );
   }
@@ -59,17 +66,20 @@ class ChatController {
     File file,
     String recieverUserId,
     MessegeEnum messegeEnum,
+    bool isGroupChat,
   ) {
     final messageReplay = ref.read(messageReplyProvider);
     ref.read(userDataAuthProvider).whenData(
           (value) => chatRepository.sendFileMessege(
-              context: context,
-              file: file,
-              recieverUserId: recieverUserId,
-              senderUserData: value!,
-              messegeEnum: messegeEnum,
-              ref: ref,
-              messageReplay: messageReplay),
+            context: context,
+            file: file,
+            recieverUserId: recieverUserId,
+            senderUserData: value!,
+            messegeEnum: messegeEnum,
+            ref: ref,
+            messageReplay: messageReplay,
+            isGroupChat: isGroupChat,
+          ),
         );
     ref.read(messageReplyProvider.state).update((state) => null);
   }

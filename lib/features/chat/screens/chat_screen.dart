@@ -15,12 +15,11 @@ class ChatScreen extends ConsumerWidget {
   final String name;
   final String uid;
   final bool isGroupChat;
-  const ChatScreen({
-    super.key,
-    required this.name,
-    required this.uid,
-    required this.isGroupChat
-  });
+  const ChatScreen(
+      {super.key,
+      required this.name,
+      required this.uid,
+      required this.isGroupChat});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,43 +29,41 @@ class ChatScreen extends ConsumerWidget {
           child: AppBar(
             backgroundColor: ktheme,
             elevation: 0,
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 8.0),
-              child: CircleAvatar(
-                backgroundImage: AssetImage(
-                  "images/user.png",
-                ),
-              ),
-            ),
-            title: isGroupChat? AppBarTitle(title: name) : InkWell(
-              onTap: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => ViewProfile())),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  StreamBuilder<UserModel>(
-                      stream:
-                          ref.read(authControllerProvider).userDataById(uid),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return Loader();
-                        }
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AppBarTitle(title: name),
-                            Text(
-                              snapshot.data!.isOnline ? 'online' : 'offline',
-                              style: TextStyle(color: kwhite, fontSize: 16),
-                            )
-                          ],
-                        );
-                      }),
-                ],
-              ),
-            ),
+            title: isGroupChat
+                ? AppBarTitle(title: name)
+                : InkWell(
+                    onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => ViewProfile())),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        StreamBuilder<UserModel>(
+                            stream: ref
+                                .read(authControllerProvider)
+                                .userDataById(uid),
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return Loader();
+                              }
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  AppBarTitle(title: name),
+                                  Text(
+                                    snapshot.data!.isOnline
+                                        ? 'online'
+                                        : 'offline',
+                                    style:
+                                        TextStyle(color: kwhite, fontSize: 16),
+                                  )
+                                ],
+                              );
+                            }),
+                      ],
+                    ),
+                  ),
             actions: const [
               Padding(
                 padding: EdgeInsets.only(right: 10.0),
@@ -97,9 +94,11 @@ class ChatScreen extends ConsumerWidget {
             Expanded(
               child: ChatList(
                 recieverUserId: uid,
+                isGroupChat : isGroupChat,
               ),
             ),
-            BottomTextBox(recieverUserId: uid)
+            BottomTextBox(recieverUserId: uid,
+             isGroupChat : isGroupChat,)
           ],
         ));
   }

@@ -15,9 +15,11 @@ import 'package:talkaro/utils/colors.dart';
 
 class BottomTextBox extends ConsumerStatefulWidget {
   final String recieverUserId;
+  final bool isGroupChat;
   const BottomTextBox({
     super.key,
     required this.recieverUserId,
+    required this.isGroupChat,
   });
 
   @override
@@ -55,6 +57,7 @@ class _BottomTextBoxState extends ConsumerState<BottomTextBox> {
             context,
             _messegeController.text.trim(),
             widget.recieverUserId,
+            widget.isGroupChat,
           );
       _messegeController.clear();
       setState(() {
@@ -90,6 +93,7 @@ class _BottomTextBoxState extends ConsumerState<BottomTextBox> {
           file,
           widget.recieverUserId,
           messegeEnum,
+           widget.isGroupChat,
         );
   }
 

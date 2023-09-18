@@ -46,7 +46,7 @@ class _HomePageState extends ConsumerState<HomePage>
         ref.read(authControllerProvider).setUserState(false);
         break;
       case AppLifecycleState.hidden:
-        // TODO: Handle this case.
+      
         break;
     }
   }

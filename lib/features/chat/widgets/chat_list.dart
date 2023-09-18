@@ -13,7 +13,12 @@ import 'package:talkaro/features/chat/controller/chat_controller.dart';
 
 class ChatList extends ConsumerStatefulWidget {
   final String recieverUserId;
-  const ChatList({super.key, required this.recieverUserId});
+  final bool isGroupChat;
+  const ChatList({
+    super.key,
+    required this.recieverUserId,
+    required this.isGroupChat,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ChatListState();
@@ -43,8 +48,15 @@ class _ChatListState extends ConsumerState<ChatList> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Messege>>(
-        stream:
-            ref.read(chatControllerProvider).chatStream(widget.recieverUserId),
+        stream: widget.isGroupChat
+            ? ref
+                .read(chatControllerProvider)
+                .groupchatStream(widget.recieverUserId)
+            : ref
+                .read(chatControllerProvider)
+                .chatStream(widget.recieverUserId),
+
+                
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Loader();

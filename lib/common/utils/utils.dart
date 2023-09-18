@@ -19,6 +19,7 @@ Future<File?> pickImageFromGallery(BuildContext context) async {
       image = File(pickedImage.path);
     }
   } catch (e) {
+    // ignore: use_build_context_synchronously
     showSnackBar(context: context, content: e.toString());
   }
   return image;
