@@ -1,3 +1,4 @@
+import 'package:agora_uikit/agora_uikit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/widgets/loader.dart';
@@ -5,11 +6,11 @@ import 'package:talkaro/config/agora_config.dart';
 import 'package:talkaro/features/calls/controller/call_controller.dart';
 import 'package:talkaro/models/call_model.dart';
 
-class CallScreen extends ConsumerStatefulWidget {
+class VideoCallScreen extends ConsumerStatefulWidget {
   final String channelId;
   final Call call;
   final bool isGroupChat;
-  const CallScreen({
+  const VideoCallScreen({
     Key? key,
     required this.channelId,
     required this.call,
@@ -17,12 +18,12 @@ class CallScreen extends ConsumerStatefulWidget {
   }) : super(key: key);
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _CallScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _VideoCallScreenState();
 }
 
-class _CallScreenState extends ConsumerState<CallScreen> {
+class _VideoCallScreenState extends ConsumerState<VideoCallScreen> {
   AgoraClient? client;
-  String baseUrl = 'https://whatsapp-clone-rrr.herokuapp.com';
+  String baseUrl = 'https://talkaro-calling-service.onrender.com';
 
   @override
   void initState() {

@@ -95,9 +95,13 @@ class SenderMessegeCard extends StatelessWidget {
                         ),
                         kheight5,
                       ],
-                      DisplayTextAndFiles(
-                        message: message,
-                        type: type,
+                      Container(
+                        constraints:
+                            BoxConstraints(maxHeight: 400, maxWidth: 400),
+                        child: DisplayTextAndFiles(
+                          message: message,
+                          type: type,
+                        ),
                       ),
                     ],
                   ),

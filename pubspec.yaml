@@ -43,16 +43,16 @@ dependencies:
     sdk: flutter
   flutter_contacts: any
   flutter_riverpod: any
-  flutter_sound: ^9.2.13
+  flutter_sound: any
   image_picker: any
   intl: ^0.18.1
   json_annotation: ^4.8.1
   lottie: null
   path_provider: ^2.1.1
-  permission_handler: ^9.2.0
+  permission_handler: ^10.2.0
   shared_preferences: any
   swipe_to: ^1.0.2
-  uuid: ^1.0.2
+  uuid: ^3.0.7
 
 dev_dependencies:
   flutter_lints: any

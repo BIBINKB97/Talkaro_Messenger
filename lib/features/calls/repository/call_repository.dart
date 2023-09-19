@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/utils/utils.dart';
-import 'package:talkaro/features/calls/screen/call_screen.dart';
+import 'package:talkaro/features/calls/screen/video_call_screen.dart';
 import 'package:talkaro/models/call_model.dart';
 import 'package:talkaro/models/group.dart';
 
@@ -25,7 +25,7 @@ class CallRepository {
   Stream<DocumentSnapshot> get callStream =>
       firestore.collection('call').doc(auth.currentUser!.uid).snapshots();
 
-  void makeCall(
+  void makeVideoCall(
     Call senderCallData,
     BuildContext context,
     Call receiverCallData,
@@ -40,10 +40,11 @@ class CallRepository {
           .doc(senderCallData.receiverId)
           .set(receiverCallData.toMap());
 
+      // ignore: use_build_context_synchronously
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => CallScreen(
+          builder: (context) => VideoCallScreen(
             channelId: senderCallData.callId,
             call: senderCallData,
             isGroupChat: false,
@@ -51,6 +52,38 @@ class CallRepository {
         ),
       );
     } catch (e) {
+      // ignore: use_build_context_synchronously
+      showSnackBar(context: context, content: e.toString());
+    }
+  }
+   void makeAudioCall(
+    Call senderCallData,
+    BuildContext context,
+    Call receiverCallData,
+  ) async {
+    try {
+      await firestore
+          .collection('call')
+          .doc(senderCallData.callerId)
+          .set(senderCallData.toMap());
+      await firestore
+          .collection('call')
+          .doc(senderCallData.receiverId)
+          .set(receiverCallData.toMap());
+
+      // ignore: use_build_context_synchronously
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => VideoCallScreen(
+            channelId: senderCallData.callId,
+            call: senderCallData,
+            isGroupChat: false,
+          ),
+        ),
+      );
+    } catch (e) {
+      // ignore: use_build_context_synchronously
       showSnackBar(context: context, content: e.toString());
     }
   }
@@ -79,10 +112,11 @@ class CallRepository {
             .set(receiverCallData.toMap());
       }
 
+      // ignore: use_build_context_synchronously
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => CallScreen(
+          builder: (context) => VideoCallScreen(
             channelId: senderCallData.callId,
             call: senderCallData,
             isGroupChat: true,
@@ -90,6 +124,7 @@ class CallRepository {
         ),
       );
     } catch (e) {
+      // ignore: use_build_context_synchronously
       showSnackBar(context: context, content: e.toString());
     }
   }
@@ -103,6 +138,7 @@ class CallRepository {
       await firestore.collection('call').doc(callerId).delete();
       await firestore.collection('call').doc(receiverId).delete();
     } catch (e) {
+      // ignore: use_build_context_synchronously
       showSnackBar(context: context, content: e.toString());
     }
   }
@@ -121,6 +157,7 @@ class CallRepository {
         await firestore.collection('call').doc(id).delete();
       }
     } catch (e) {
+      // ignore: use_build_context_synchronously
       showSnackBar(context: context, content: e.toString());
     }
   }

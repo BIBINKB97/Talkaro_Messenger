@@ -55,53 +55,60 @@ class MyMessageCard extends StatelessWidget {
                           left: 10,
                           right: 30,
                           top: 5,
-                          bottom: 10,
+                          bottom: 15,
                         )
                       : EdgeInsets.only(
-                          bottom: 10,
+                          bottom: 7,
                           left: 5,
                           right: 5,
                           top: 5,
                         ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (isReplaying) ...[
-                        kheight5,
-                        Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: kblack.withOpacity(0.2),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(
-                                5,
-                              ),
-                            ),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                username,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
+                  child: Container(
+                    constraints: BoxConstraints(minWidth: 25),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (isReplaying) ...[
+                          kheight5,
+                          Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: kblack.withOpacity(0.2),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(
+                                  5,
                                 ),
                               ),
-                              kheight5,
-                              DisplayTextAndFiles(
-                                message: repliedText,
-                                type: repliedMessegeType,
-                              ),
-                            ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  username,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                kheight5,
+                                DisplayTextAndFiles(
+                                  message: repliedText,
+                                  type: repliedMessegeType,
+                                ),
+                              ],
+                            ),
+                          ),
+                          kheight5,
+                        ],
+                        Container(
+                          constraints:
+                              BoxConstraints(maxHeight: 400, maxWidth: 400),
+                          child: DisplayTextAndFiles(
+                            message: message,
+                            type: type,
                           ),
                         ),
-                        kheight5,
                       ],
-                      DisplayTextAndFiles(
-                        message: message,
-                        type: type,
-                      ),
-                    ],
+                    ),
                   ),
                 ),
                 Positioned(
