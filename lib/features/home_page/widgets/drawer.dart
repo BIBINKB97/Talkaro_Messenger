@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/features/login_register/user_information.dart';
 import 'package:talkaro/features/splash_screen/splash_screen.dart';
 import 'package:talkaro/utils/colors.dart';
@@ -81,11 +80,45 @@ class CustomDrawer extends StatelessWidget {
             leading: Icon(Icons.logout),
             title: Text('Sign out'),
             onTap: () {
-              FirebaseAuth.instance.signOut();
-              showSnackBar(
-                  context: context, content: 'You have been signed out !');
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => SplashScreen()));
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text(
+                      'Signout !',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                    content: const Text(
+                        'This action will Signout you from this application.'),
+                    actions: <Widget>[
+                      TextButton(
+                        child: const Text('Cancel'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      TextButton(
+                        child: const Text('Yes'),
+                        onPressed: () async {
+                          FirebaseAuth.instance.signOut();
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SplashScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+
+              // FirebaseAuth.instance.signOut();
+              // showSnackBar(
+              //     context: context, content: 'You have been signed out !');
+              // Navigator.of(context).pushReplacement(
+              //     MaterialPageRoute(builder: (context) => SplashScreen()));
             },
           ),
         ],
