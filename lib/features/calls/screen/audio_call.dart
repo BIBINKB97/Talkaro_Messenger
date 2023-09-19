@@ -50,6 +50,7 @@ class _AudioCallScreenState extends ConsumerState<AudioCallScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kblack,
       body: client == null
           ? const Loader()
           : SafeArea(

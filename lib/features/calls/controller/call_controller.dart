@@ -33,26 +33,28 @@ class CallController {
     ref.read(userDataAuthProvider).whenData((value) {
       String callId = const Uuid().v1();
       Call senderCallData = Call(
-          callerId: auth.currentUser!.uid,
-          callerName: value!.name,
-          callerPic: value.profilePic,
-          receiverId: receiverUid,
-          receiverName: receiverName,
-          receiverPic: receiverProfilePic,
-          callId: callId,
-          hasDialled: true,
-          isAudioCall: false);
+        callerId: auth.currentUser!.uid,
+        callerName: value!.name,
+        callerPic: value.profilePic,
+        receiverId: receiverUid,
+        receiverName: receiverName,
+        receiverPic: receiverProfilePic,
+        callId: callId,
+        hasDialled: true,
+        isAudioCall: false,
+      );
 
       Call recieverCallData = Call(
-          callerId: auth.currentUser!.uid,
-          callerName: value.name,
-          callerPic: value.profilePic,
-          receiverId: receiverUid,
-          receiverName: receiverName,
-          receiverPic: receiverProfilePic,
-          callId: callId,
-          hasDialled: false,
-          isAudioCall: false);
+        callerId: auth.currentUser!.uid,
+        callerName: value.name,
+        callerPic: value.profilePic,
+        receiverId: receiverUid,
+        receiverName: receiverName,
+        receiverPic: receiverProfilePic,
+        callId: callId,
+        hasDialled: false,
+        isAudioCall: false,
+      );
       if (isGroupChat) {
         callRepository.makeGroupCall(senderCallData, context, recieverCallData);
       } else {
@@ -66,26 +68,28 @@ class CallController {
     ref.read(userDataAuthProvider).whenData((value) {
       String callId = const Uuid().v1();
       Call senderCallData = Call(
-          callerId: auth.currentUser!.uid,
-          callerName: value!.name,
-          callerPic: value.profilePic,
-          receiverId: receiverUid,
-          receiverName: receiverName,
-          receiverPic: receiverProfilePic,
-          callId: callId,
-          hasDialled: true,
-          isAudioCall: true);
+        callerId: auth.currentUser!.uid,
+        callerName: value!.name,
+        callerPic: value.profilePic,
+        receiverId: receiverUid,
+        receiverName: receiverName,
+        receiverPic: receiverProfilePic,
+        callId: callId,
+        hasDialled: true,
+        isAudioCall: true,
+      );
 
       Call recieverCallData = Call(
-          callerId: auth.currentUser!.uid,
-          callerName: value.name,
-          callerPic: value.profilePic,
-          receiverId: receiverUid,
-          receiverName: receiverName,
-          receiverPic: receiverProfilePic,
-          callId: callId,
-          hasDialled: false,
-          isAudioCall: true);
+        callerId: auth.currentUser!.uid,
+        callerName: value.name,
+        callerPic: value.profilePic,
+        receiverId: receiverUid,
+        receiverName: receiverName,
+        receiverPic: receiverProfilePic,
+        callId: callId,
+        hasDialled: false,
+        isAudioCall: true,
+      );
       if (isGroupChat) {
         callRepository.makeGroupCall(senderCallData, context, recieverCallData);
       } else {

@@ -8,6 +8,8 @@ class Call {
   final String callId;
   final bool hasDialled;
   final bool isAudioCall;
+
+  
   Call({
     required this.callerId,
     required this.callerName,
@@ -18,6 +20,7 @@ class Call {
     required this.callId,
     required this.hasDialled,
     required this.isAudioCall,
+
   });
 
   Map<String, dynamic> toMap() {

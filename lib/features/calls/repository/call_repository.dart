@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/utils/utils.dart';
+import 'package:talkaro/features/calls/screen/audio_call.dart';
 import 'package:talkaro/features/calls/screen/video_call_screen.dart';
 import 'package:talkaro/models/call_model.dart';
 import 'package:talkaro/models/group.dart';
@@ -75,7 +76,7 @@ class CallRepository {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => VideoCallScreen(
+          builder: (context) => AudioCallScreen(
             channelId: senderCallData.callId,
             call: senderCallData,
             isGroupChat: false,

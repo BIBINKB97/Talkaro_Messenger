@@ -16,7 +16,7 @@ class ChatScreen extends ConsumerWidget {
   static const String routeName = '/inbox-screen';
   final String name;
   final String uid;
-  final String profilePic;
+  final String? profilePic;
   final bool isGroupChat;
   const ChatScreen(
       {super.key,
@@ -30,7 +30,7 @@ class ChatScreen extends ConsumerWidget {
           context,
           name,
           uid,
-          profilePic,
+          profilePic!,
           isGroupChat,
         );
   }
@@ -40,7 +40,7 @@ class ChatScreen extends ConsumerWidget {
           context,
           name,
           uid,
-          profilePic,
+          profilePic!,
           isGroupChat,
         );
   }
@@ -95,15 +95,13 @@ class ChatScreen extends ConsumerWidget {
                   child: Row(
                     children: [
                       IconButton(
-                        onPressed: () {
-                          makeAudioCall(ref, context);
-                        },
-                        icon: Icon(Icons.call_rounded),
-                      ),
-                      kwidth20,
-                      IconButton(
                           onPressed: () => makeVideoCall(ref, context),
                           icon: Icon(Icons.videocam_rounded)),
+                      kwidth20,
+                      IconButton(
+                        onPressed: () => makeAudioCall(ref, context),
+                        icon: Icon(Icons.call_rounded),
+                      ),
                       kwidth20,
                       Icon(
                         Icons.more_vert,
