@@ -98,6 +98,9 @@ class _ChatListState extends ConsumerState<ChatList> {
                     messegeData.type,
                   ),
                   isSeen: messegeData.isSeen,
+                  messegeId: messegeData.messageId,
+                recieverid: messegeData.recieverid,
+                isGroupchat: false,
                 );
               }
               return SenderMessegeCard(

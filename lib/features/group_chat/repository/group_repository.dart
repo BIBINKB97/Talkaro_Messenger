@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/repositories/common_firebase_storage_repository.dart';
 import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/models/group.dart';
+import 'package:talkaro/models/user_model.dart';
 import 'package:uuid/uuid.dart';
 
 final groupRepositoryProvider = Provider(
@@ -69,6 +70,72 @@ class GroupRepository {
       await firestore.collection('groups').doc(groupId).set(group.toMap());
     } catch (e) {
       showSnackBar(context: context, content: e.toString());
+    }
+  }
+
+  Stream<GroupModel> groupData(String groupId) {
+    return firestore.collection('groups').doc(groupId).snapshots().map(
+          (event) => GroupModel.fromMap(
+            event.data()!,
+          ),
+        );
+  }
+   Future<void> addMemberToGroup(
+      BuildContext context, String groupId, List<String> newMemberUid) async {
+    try {
+      var userCollection = await firestore.collection('users').get();
+      bool isFound = false;
+
+      for (var document in userCollection.docs) {
+        var userData = UserModel.fromMap(document.data());
+        // String selectedPhoneNum = newMemberUid[0].replaceAll(
+        //   ' ',
+        //   '',
+        // );
+        for (int i = 0; i < newMemberUid.length; i++) {
+          String selectedPhoneNum = newMemberUid[i];
+          if (selectedPhoneNum == userData.phoneNumber) {
+            isFound = true;
+            try {
+              DocumentSnapshot groupDoc =
+                  await firestore.collection('groups').doc(groupId).get();
+
+              if (groupDoc.exists) {
+                List<dynamic> currentMembers = groupDoc['membersUid'];
+                bool memberExists = false;
+
+                for (int i = 0; i < newMemberUid.length; i++) {
+                  if (!currentMembers.contains(userData.uid)) {
+                    currentMembers.add(userData.uid);
+                    await firestore.collection('groups').doc(groupId).update({
+                      'membersUid': currentMembers,
+                    });
+                  
+                  } else {
+                    memberExists = true;
+                  }
+                }
+
+                if (memberExists) {
+                  throw 'One or more members already exist in the group.';
+                }
+              } else {
+                throw 'Group not found.';
+              }
+            } catch (e) {
+                showSnackBar(context:context,content: e.toString());
+
+            }
+          } else {
+            showSnackBar(context: context,
+             
+              content: 'This number does not exist on this app.',
+            );
+          }
+        }
+      }
+    } catch (e) {
+    showSnackBar(context:context,content: e.toString());
     }
   }
 }

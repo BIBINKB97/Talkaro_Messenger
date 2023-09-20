@@ -86,6 +86,27 @@ class ChatRepository {
     });
   }
 
+   Future<GroupModel> fetchGroupData(String groupId) async {
+    try {
+      final DocumentSnapshot groupDoc =
+          await firestore.collection('groups').doc(groupId).get();
+
+      if (groupDoc.exists) {
+        final groupData = groupDoc.data();
+        if (groupData != null) {
+          final group = GroupModel.fromMap(groupData as Map<String, dynamic>);
+          return group;
+        } else {
+          throw 'Group data is null.';
+        }
+      } else {
+        throw 'Group not found.';
+      }
+    } catch (e) {
+      throw e;
+    }
+  }
+
   Stream<List<Messege>> getGroupChatStream(String groupId) {
     return firestore
         .collection('groups')
@@ -348,4 +369,36 @@ class ChatRepository {
       showSnackBar(context: context, content: e.toString());
     }
   }
+   void deleteMessageFromMessageSubcollection({
+  required String recieverUserId,
+  required String messegeId,
+  required bool isGroupChat,
+}) async {
+  if (isGroupChat) {
+    await firestore
+        .collection('groups')
+        .doc(recieverUserId)
+        .collection('chats')
+        .doc(messegeId)
+        .delete();
+  } else {
+    await firestore
+        .collection('users')
+        .doc(auth.currentUser!.uid)
+        .collection('chats')
+        .doc(recieverUserId)
+        .collection('messages')
+        .doc(messegeId)
+        .delete();
+
+    await firestore
+        .collection('users')
+        .doc(recieverUserId)
+        .collection('chats')
+        .doc(auth.currentUser!.uid)
+        .collection('messages')
+        .doc(messegeId)
+        .delete();
+  }
+}
 }

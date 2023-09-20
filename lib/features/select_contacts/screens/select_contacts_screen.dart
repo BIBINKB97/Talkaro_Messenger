@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/widgets/error.dart';
 import 'package:talkaro/common/widgets/loader.dart';
 import 'package:talkaro/features/select_contacts/controller/select_contact_controller.dart';
+import 'package:talkaro/features/select_contacts/widgets/search_delegate.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/main_widgets.dart';
 
@@ -26,7 +27,15 @@ class SelsectContactScreen extends ConsumerWidget {
         backgroundColor: ktheme,
         title: AppBarTitle(title: "Select Contact"),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Search(),
+                    ));
+              },
+              icon: Icon(Icons.search)),
           IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
         ],
       ),
@@ -36,7 +45,7 @@ class SelsectContactScreen extends ConsumerWidget {
               itemBuilder: (context, index) {
                 final contact = contactList[index];
                 return InkWell(
-                  onTap: () => selectContact(ref,contact,context),
+                  onTap: () => selectContact(ref, contact, context),
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
                     child: ListTile(

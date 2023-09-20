@@ -6,7 +6,8 @@ import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/features/group_chat/controller/group_controller.dart';
 import 'package:talkaro/features/group_chat/widgets/select_contacts_group.dart';
 import 'package:talkaro/utils/colors.dart';
-
+import 'package:talkaro/utils/constants.dart';
+import 'package:talkaro/utils/main_widgets.dart';
 
 class CreateGroupScreen extends ConsumerStatefulWidget {
   static const String routeName = '/create-group';
@@ -48,32 +49,39 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create Group'),
+        title: AppBarTitle(title: 'Create Group'),
+        centerTitle: true,
+        backgroundColor: ktheme,
+        elevation: 0,
       ),
       body: Center(
         child: Column(
           children: [
-            const SizedBox(height: 10),
+            kheight20,
             Stack(
               children: [
                 image == null
                     ? const CircleAvatar(
                         backgroundImage: AssetImage('images/user.png'),
-                        radius: 64,
+                        radius: 70,
                       )
                     : CircleAvatar(
                         backgroundImage: FileImage(
                           image!,
                         ),
-                        radius: 64,
+                        radius: 70,
                       ),
                 Positioned(
-                  bottom: -10,
-                  left: 80,
-                  child: IconButton(
-                    onPressed: selectImage,
-                    icon: const Icon(
-                      Icons.add_a_photo,
+                  bottom: 5,
+                  right: 1,
+                  child: CircleAvatar(
+                    backgroundColor: ktheme,
+                    child: IconButton(
+                      onPressed: selectImage,
+                      icon: const Icon(
+                        Icons.add_a_photo,
+                        color: kwhite,
+                      ),
                     ),
                   ),
                 ),
@@ -94,6 +102,7 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupScreen> {
               child: const Text(
                 'Select Contacts',
                 style: TextStyle(
+                  color: ktheme,
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),

@@ -4,8 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/widgets/error.dart';
 import 'package:talkaro/common/widgets/loader.dart';
 import 'package:talkaro/features/select_contacts/controller/select_contact_controller.dart';
+import 'package:talkaro/utils/colors.dart';
 
 final selectedGroupContacts = StateProvider<List<Contact>>((ref) => []);
+  List<int> selectedContactsIndex = [];
 
 class SelectContactsGroup extends ConsumerStatefulWidget {
   const SelectContactsGroup({Key? key}) : super(key: key);
@@ -51,8 +53,19 @@ class _SelectContactsGroupState extends ConsumerState<SelectContactsGroup> {
                         ),
                         leading: selectedContactsIndex.contains(index)
                             ? IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.done),
+                                onPressed: () {
+                                  setState(() {
+                                    selectedContactsIndex.remove(index);
+                                  });
+                                },
+                                icon: CircleAvatar(
+                                    radius: 14,
+                                    backgroundColor: ktheme,
+                                    child: const Icon(
+                                      Icons.done,
+                                      color: kwhite,
+                                      size: 20,
+                                    )),
                               )
                             : null,
                       ),
