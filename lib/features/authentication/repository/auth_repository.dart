@@ -11,7 +11,9 @@ import 'package:talkaro/features/login_register/otp_verification.dart';
 import 'package:talkaro/features/login_register/user_information.dart';
 
 final authRepositoryProvider = Provider((ref) => AuthRepository(
-    auth: FirebaseAuth.instance, firestore: FirebaseFirestore.instance));
+      auth: FirebaseAuth.instance,
+      firestore: FirebaseFirestore.instance,
+    ));
 
 class AuthRepository {
   final FirebaseAuth auth;
@@ -42,10 +44,8 @@ class AuthRepository {
             throw Exception(e.message);
           },
           codeSent: ((String verificationId, int? resendToken) async {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => OTPScreen(
-                      verificationId: verificationId,
-                    )));
+            Navigator.pushNamed(context, OTPScreen.routeName,
+                arguments: verificationId);
           }),
           codeAutoRetrievalTimeout: (String varificationId) {});
     } on FirebaseAuthException catch (e) {

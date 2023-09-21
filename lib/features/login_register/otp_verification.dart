@@ -1,58 +1,140 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/features/authentication/controller/auth_controller.dart';
+import 'package:talkaro/features/login_register/widgets/text_style.dart';
+import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
-import 'package:talkaro/utils/main_widgets.dart';
 
-class OTPScreen extends ConsumerWidget {
+class OTPScreen extends ConsumerStatefulWidget {
   static const String routeName = '/otp-screen';
-  const OTPScreen({super.key, required this.verificationId});
   final String verificationId;
+  final String phoneNumber;
+  const OTPScreen({
+    super.key,
+    required this.verificationId,
+    required this.phoneNumber,
+  });
 
-  void verifyOTP(WidgetRef ref, BuildContext context, String userOTP) {
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _OTPScreenState();
+}
+
+class _OTPScreenState extends ConsumerState<OTPScreen> {
+  void verifyOTP(BuildContext context, String userOTP) {
     ref
         .read(authControllerProvider)
-        .verifyOTP(context, verificationId, userOTP);
+        .verifyOTP(context, widget.verificationId, userOTP);
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-        body: ListView(children: [
-      kheight80,
-      Center(
-        child: SizedBox(
-          height: 150,
-          width: 150,
-          child: Image(image: AssetImage("images/logo1.png")),
-        ),
-      ),
-      kheight20,
-      Center(
-          child: Text(
-        "Enter your otp",
-        style: TextStyle(
-            fontSize: 17, wordSpacing: 2, fontWeight: FontWeight.w500),
-      )),
-      kheight80,
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 140.0),
-        child: TextField(
-          textAlign: TextAlign.center,
-          keyboardType: TextInputType.number,
-          onChanged: (val) {
-            if (val.length == 6) {
-              verifyOTP(ref, context, val.trim());
+  void initState() {
+    startTimer();
+    super.initState();
+  }
+
+  Timer? _timer;
+  int _start = 60;
+  String getFormattedTime() {
+    final minutes = (_start / 60).floor();
+    final seconds = _start % 60;
+    final formattedMinutes = minutes.toString().padLeft(2, '0');
+    final formattedSeconds = seconds.toString().padLeft(2, '0');
+    return '$formattedMinutes:$formattedSeconds';
+  }
+
+  void startTimer() {
+    if (_timer != null) {
+      _timer!.cancel();
+      _timer = null;
+    } else {
+      _timer = Timer.periodic(
+        const Duration(seconds: 1),
+        (Timer timer) => setState(
+          () {
+            if (_start < 1) {
+              timer.cancel();
+            } else {
+              _start = _start - 1;
             }
           },
-          decoration: InputDecoration(
-            hintText: '-  -  -  -  -  -',
-            hintStyle: TextStyle(fontSize: 30),
-          ),
         ),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _timer!.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 150,
+            width: 150,
+            child: Image(image: AssetImage("images/logo1.png")),
+          ),
+          kheight50,
+          const Text(
+            'Verify your OTP',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          ),
+          kheight20,
+          SizedBox(
+            child: OtpTextField(
+              focusedBorderColor: ktheme,
+              cursorColor: ktheme,
+              numberOfFields: 6,
+              borderColor: ktheme,
+              showFieldAsBox: true,
+              keyboardType: TextInputType.number,
+              onSubmit: (val) {
+                if (val.length == 6) {
+                  verifyOTP(context, val.trim());
+                  Navigator.pushReplacementNamed(
+                      context, '/user-informationScreen');
+                }
+              },
+            ),
+          ),
+          kheight40,
+          _start > 0
+              ? Text(
+                  'Time remaining  : ${getFormattedTime()}',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                )
+              : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      CustomText(text: "Did'nt received a code?"),
+                      InkWell(
+                        onTap: () {
+                          ref
+                              .read(authControllerProvider)
+                              .signInWithPhone(context, widget.phoneNumber);
+                        },
+                        child: CustomText(
+                          text: "Resend OTP",
+                          color: ktheme,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+        ],
       ),
-      kheight40,
-      CommonButton(title: "veryfy", onPressed: () {})
-    ]));
+    );
   }
 }

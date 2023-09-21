@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/features/authentication/controller/auth_controller.dart';
-import 'package:talkaro/features/login_register/otp_verification.dart';
+import 'package:talkaro/features/login_register/widgets/text_style.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
 import 'package:talkaro/utils/main_widgets.dart';
@@ -45,84 +45,82 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     } else {
       showSnackBar(context: context, content: 'fill out all the fields');
     }
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => OTPScreen(verificationId: phoneNumber)));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(children: [
-      kheight80,
-      Center(
-        child: SizedBox(
+        body: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
           height: 150,
           width: 150,
           child: Image(image: AssetImage("images/logo1.png")),
         ),
-      ),
-      kheight40,
-      Center(
-          child: Column(
-        children: [
-          kheight20,
-          Text('Talkaro will need to verify your phone number.'),
-          kheight40,
-          Container(
-            width: 300,
-            decoration: BoxDecoration(
-                border: Border.all(color: ktheme),
-                borderRadius: BorderRadius.circular(10)),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  children: [
-                    GestureDetector(
-                      onTap: pickCountry,
-                      child: Stack(
-                        children: [
-                          SizedBox(
-                              width: 60,
-                              child: CircleAvatar(
-                                radius: 18,
-                                backgroundColor: Colors.transparent,
-                                child: Image.asset('images/Glb.png',
-                                    fit: BoxFit.cover),
-                              )),
-                          Padding(
-                            padding: EdgeInsets.only(top: 5, left: 44),
-                            child: Icon(Icons.arrow_drop_down),
-                          ),
-                        ],
+        Center(
+            child: Column(
+          children: [
+            kheight20,
+            CustomText(text: 'Talkaro will need to verify your phone number.'),
+            kheight40,
+            Container(
+              width: 300,
+              decoration: BoxDecoration(
+                  border: Border.all(color: ktheme),
+                  borderRadius: BorderRadius.circular(10)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: pickCountry,
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                                width: 60,
+                                child: CircleAvatar(
+                                  radius: 18,
+                                  backgroundColor: Colors.transparent,
+                                  child: Image.asset('images/Glb.png',
+                                      fit: BoxFit.cover),
+                                )),
+                            Padding(
+                              padding: EdgeInsets.only(top: 5, left: 44),
+                              child: Icon(Icons.arrow_drop_down),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    if (country != null)
-                      Text(
-                        '+${country!.phoneCode}',
-                        style: TextStyle(fontSize: 16),
+                      if (country != null)
+                        Text(
+                          '+${country!.phoneCode}',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      kwidth2,
+                    ],
+                  ),
+                  Expanded(
+                    child: SizedBox(
+                      child: TextFormField(
+                        decoration: InputDecoration(border: InputBorder.none),
+                        keyboardType: TextInputType.number,
+                        controller: phoneController,
                       ),
-                  ],
-                ),
-                Expanded(
-                  child: SizedBox(
-                    child: TextFormField(
-                      decoration: InputDecoration(border: InputBorder.none),
-                      keyboardType: TextInputType.number,
-                      controller: phoneController,
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          kheight40,
-          CommonButton(
-            title: 'Send OTP',
-            onPressed: sendPhoneNumber,
-          ),
-        ],
-      )),
-    ]));
+            kheight40,
+            CommonButton(
+              title: 'Send OTP',
+              onPressed: sendPhoneNumber,
+            ),
+          ],
+        )),
+      ],
+    ));
   }
 }
