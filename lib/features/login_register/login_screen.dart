@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/features/authentication/controller/auth_controller.dart';
+import 'package:talkaro/features/login_register/otp_verification.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
 import 'package:talkaro/utils/main_widgets.dart';
@@ -35,7 +36,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         });
   }
 
-  void   sendPhoneNumber() {
+  void sendPhoneNumber() {
     String phoneNumber = phoneController.text.trim();
     if (country != null && phoneNumber.isNotEmpty) {
       ref
@@ -44,6 +45,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     } else {
       showSnackBar(context: context, content: 'fill out all the fields');
     }
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => OTPScreen(verificationId: phoneNumber)));
   }
 
   @override
@@ -75,22 +78,24 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               children: [
                 Row(
                   children: [
-                    Stack(
-                      children: [
-                        SizedBox(
-                          width: 60,
-                          child: IconButton(
-                              onPressed: pickCountry,
-                              icon: Icon(
-                                Icons.language,
-                                color: ktheme,
+                    GestureDetector(
+                      onTap: pickCountry,
+                      child: Stack(
+                        children: [
+                          SizedBox(
+                              width: 60,
+                              child: CircleAvatar(
+                                radius: 18,
+                                backgroundColor: Colors.transparent,
+                                child: Image.asset('images/Glb.png',
+                                    fit: BoxFit.cover),
                               )),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 13, left: 40),
-                          child: Icon(Icons.arrow_drop_down),
-                        ),
-                      ],
+                          Padding(
+                            padding: EdgeInsets.only(top: 5, left: 44),
+                            child: Icon(Icons.arrow_drop_down),
+                          ),
+                        ],
+                      ),
                     ),
                     if (country != null)
                       Text(
@@ -99,7 +104,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ),
                   ],
                 ),
-                kwidth10,
                 Expanded(
                   child: SizedBox(
                     child: TextFormField(

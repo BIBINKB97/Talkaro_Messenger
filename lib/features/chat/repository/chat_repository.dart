@@ -86,7 +86,7 @@ class ChatRepository {
     });
   }
 
-   Future<GroupModel> fetchGroupData(String groupId) async {
+  Future<GroupModel> fetchGroupData(String groupId) async {
     try {
       final DocumentSnapshot groupDoc =
           await firestore.collection('groups').doc(groupId).get();
@@ -369,36 +369,37 @@ class ChatRepository {
       showSnackBar(context: context, content: e.toString());
     }
   }
-   void deleteMessageFromMessageSubcollection({
-  required String recieverUserId,
-  required String messegeId,
-  required bool isGroupChat,
-}) async {
-  if (isGroupChat) {
-    await firestore
-        .collection('groups')
-        .doc(recieverUserId)
-        .collection('chats')
-        .doc(messegeId)
-        .delete();
-  } else {
-    await firestore
-        .collection('users')
-        .doc(auth.currentUser!.uid)
-        .collection('chats')
-        .doc(recieverUserId)
-        .collection('messages')
-        .doc(messegeId)
-        .delete();
 
-    await firestore
-        .collection('users')
-        .doc(recieverUserId)
-        .collection('chats')
-        .doc(auth.currentUser!.uid)
-        .collection('messages')
-        .doc(messegeId)
-        .delete();
+  void deleteMessageFromMessageSubcollection({
+    required String recieverUserId,
+    required String messegeId,
+    required bool isGroupChat,
+  }) async {
+    if (isGroupChat) {
+      await firestore
+          .collection('groups')
+          .doc(recieverUserId)
+          .collection('chats')
+          .doc(messegeId)
+          .delete();
+    } else {
+      await firestore
+          .collection('users')
+          .doc(auth.currentUser!.uid)
+          .collection('chats')
+          .doc(recieverUserId)
+          .collection('messeges')
+          .doc(messegeId)
+          .delete();
+
+      await firestore
+          .collection('users')
+          .doc(recieverUserId)
+          .collection('chats')
+          .doc(auth.currentUser!.uid)
+          .collection('messeges')
+          .doc(messegeId)
+          .delete();
+    }
   }
-}
 }

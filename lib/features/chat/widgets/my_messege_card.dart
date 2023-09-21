@@ -36,7 +36,7 @@ class MyMessageCard extends ConsumerWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context ,WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isReplaying = repliedText.isNotEmpty;
     return SwipeTo(
       onLeftSwipe: onLeftSwipe,
@@ -53,20 +53,26 @@ class MyMessageCard extends ConsumerWidget {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     title: const Text(
-                      'Do you want to delete the message?',
+                      'Do you want to delete this message?',
                       style: TextStyle(color: Colors.red),
                     ),
                     content: const Text(
-                        'This action will delete the messages from the chat'),
+                        'This action will delete this messages from the chat forever !'),
                     actions: <Widget>[
                       TextButton(
-                        child: const Text('Cancel'),
+                        child: const Text(
+                          'Cancel',
+                          style: TextStyle(fontSize: 16),
+                        ),
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
                       ),
                       TextButton(
-                        child: const Text('Yes'),
+                        child: const Text(
+                          'Delete',
+                          style: TextStyle(fontSize: 16),
+                        ),
                         onPressed: () {
                           ref
                               .read(chatRepositoryProvider)
