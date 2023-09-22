@@ -80,11 +80,11 @@ class GroupRepository {
           ),
         );
   }
-   Future<void> addMemberToGroup(
+
+  Future<void> addMemberToGroup(
       BuildContext context, String groupId, List<String> newMemberUid) async {
     try {
       var userCollection = await firestore.collection('users').get();
-      bool isFound = false;
 
       for (var document in userCollection.docs) {
         var userData = UserModel.fromMap(document.data());
@@ -95,7 +95,6 @@ class GroupRepository {
         for (int i = 0; i < newMemberUid.length; i++) {
           String selectedPhoneNum = newMemberUid[i];
           if (selectedPhoneNum == userData.phoneNumber) {
-            isFound = true;
             try {
               DocumentSnapshot groupDoc =
                   await firestore.collection('groups').doc(groupId).get();
@@ -110,7 +109,6 @@ class GroupRepository {
                     await firestore.collection('groups').doc(groupId).update({
                       'membersUid': currentMembers,
                     });
-                  
                   } else {
                     memberExists = true;
                   }
@@ -123,19 +121,18 @@ class GroupRepository {
                 throw 'Group not found.';
               }
             } catch (e) {
-                showSnackBar(context:context,content: e.toString());
-
+              showSnackBar(context: context, content: e.toString());
             }
           } else {
-            showSnackBar(context: context,
-             
+            showSnackBar(
+              context: context,
               content: 'This number does not exist on this app.',
             );
           }
         }
       }
     } catch (e) {
-    showSnackBar(context:context,content: e.toString());
+      showSnackBar(context: context, content: e.toString());
     }
   }
 }

@@ -45,6 +45,7 @@ dependencies:
   flutter_otp_text_field: ^1.1.1
   flutter_riverpod: any
   flutter_sound: any
+  iconly: ^1.0.1
   image_picker: any
   intl: ^0.18.1
   json_annotation: ^4.8.1

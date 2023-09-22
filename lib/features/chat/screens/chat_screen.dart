@@ -4,26 +4,30 @@ import 'package:talkaro/common/widgets/loader.dart';
 import 'package:talkaro/features/calls/controller/call_controller.dart';
 import 'package:talkaro/features/calls/screen/call_pickup_screen.dart';
 import 'package:talkaro/features/chat/widgets/bottom_text_box.dart';
+import 'package:talkaro/features/group_chat/controller/group_controller.dart';
+import 'package:talkaro/features/group_chat/widgets/add_new_member.dart';
+import 'package:talkaro/models/group.dart';
 import 'package:talkaro/models/user_model.dart';
 import 'package:talkaro/features/chat/widgets/chat_list.dart';
 import 'package:talkaro/features/authentication/controller/auth_controller.dart';
-import 'package:talkaro/features/profile/view_profile/view_profile.dart';
 import 'package:talkaro/utils/colors.dart';
-import 'package:talkaro/utils/constants.dart';
-import 'package:talkaro/utils/main_widgets.dart';
+
+final counterProvider = StateProvider<bool>((ref) => false);
 
 class ChatScreen extends ConsumerWidget {
-  static const String routeName = '/inbox-screen';
+  static const String routeName = '/mobile-chat-screen';
   final String name;
   final String uid;
-  final String? profilePic;
   final bool isGroupChat;
-  const ChatScreen(
-      {super.key,
-      required this.name,
-      required this.uid,
-      required this.profilePic,
-      required this.isGroupChat});
+  final String? profilePic;
+
+  const ChatScreen({
+    Key? key,
+    required this.name,
+    required this.uid,
+    required this.isGroupChat,
+    required this.profilePic,
+  }) : super(key: key);
 
   void makeVideoCall(WidgetRef ref, BuildContext context) {
     ref.read(callControllerProvider).makeVideoCall(
@@ -49,84 +53,139 @@ class ChatScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return CallPickupScreen(
       scaffold: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(60),
-            child: AppBar(
-              backgroundColor: ktheme,
-              elevation: 0,
-              title: isGroupChat
-                  ? AppBarTitle(title: name)
-                  : InkWell(
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ViewProfile())),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          StreamBuilder<UserModel>(
-                              stream: ref
-                                  .read(authControllerProvider)
-                                  .userDataById(uid),
-                              builder: (context, snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return Loader();
-                                }
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    AppBarTitle(title: name),
-                                    Text(
-                                      snapshot.data!.isOnline
-                                          ? 'online'
-                                          : 'offline',
-                                      style: TextStyle(
-                                          color: kwhite, fontSize: 16),
-                                    )
-                                  ],
+        appBar: AppBar(
+          backgroundColor: ktheme,
+          title: isGroupChat
+              ? StreamBuilder<GroupModel>(
+                  stream: ref.read(groupControllerProvider).groupDatabyId(uid),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Loader();
+                    }
+                    var userdata = snapshot.data;
+                    return Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  backgroundColor:
+                                      const Color.fromRGBO(0, 0, 0, 0),
+                                  content: CircleAvatar(
+                                    radius: 130,
+                                    backgroundImage:
+                                        NetworkImage(userdata.groupPic),
+                                  ),
                                 );
-                              }),
-                        ],
-                      ),
-                    ),
-              actions: [
-                Padding(
-                  padding: EdgeInsets.only(right: 10.0),
-                  child: Row(
-                    children: [
-                      IconButton(
-                          onPressed: () => makeVideoCall(ref, context),
-                          icon: Icon(Icons.videocam_rounded)),
-                      kwidth20,
-                      IconButton(
-                        onPressed: () => makeAudioCall(ref, context),
-                        icon: Icon(Icons.call_rounded),
-                      ),
-                      kwidth20,
-                      Icon(
-                        Icons.more_vert,
-                        color: kwhite,
-                      ),
-                    ],
-                  ),
+                              },
+                            );
+                          },
+                          child: CircleAvatar(
+                            backgroundImage: NetworkImage(userdata!.groupPic),
+                            backgroundColor: Colors.grey,
+                            radius: 25,
+                          ),
+                        ),
+                        Text(
+                          name,
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => AddNewMember(uid),
+                            ));
+                          },
+                          icon: const Icon(Icons.person_add),
+                        ),
+                      ],
+                    );
+                  },
                 )
-              ],
-            ),
-          ),
-          body: Column(
-            children: [
-              Expanded(
-                child: ChatList(
-                  recieverUserId: uid,
-                  isGroupChat: isGroupChat,
+              : StreamBuilder<UserModel>(
+                  stream: ref.read(authControllerProvider).userDataById(uid),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Loader();
+                    }
+                    var userdata = snapshot.data;
+                    return Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  backgroundColor:
+                                      const Color.fromRGBO(0, 0, 0, 0),
+                                  content: CircleAvatar(
+                                    radius: 130,
+                                    backgroundImage:
+                                        NetworkImage(userdata.profilePic),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: CircleAvatar(
+                            backgroundImage: NetworkImage(userdata!.profilePic),
+                            backgroundColor: Colors.grey,
+                            radius: 25,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              name,
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                            Text(snapshot.data!.isOnline ? 'online' : 'offline',
+                                style: const TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.normal)),
+                          ],
+                        ),
+                      ],
+                    );
+                  },
                 ),
-              ),
-              BottomTextBox(
+          centerTitle: false,
+          actions: [
+            IconButton(
+              onPressed: () {
+                makeVideoCall(ref, context);
+              },
+              icon: Icon(Icons.videocam_rounded),
+            ),
+            IconButton(
+              onPressed: () {
+                makeAudioCall(ref, context);
+              },
+              icon: Icon(Icons.call),
+            ),
+          ],
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child: ChatList(
                 recieverUserId: uid,
                 isGroupChat: isGroupChat,
-              )
-            ],
-          )),
+              ),
+            ),
+            BottomTextBox(
+              recieverUserId: uid,
+              isGroupChat: isGroupChat,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

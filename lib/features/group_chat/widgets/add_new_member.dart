@@ -14,7 +14,7 @@ class AddNewMember extends ConsumerStatefulWidget {
 
   final String groupId;
 
-  AddNewMember(this.groupId);
+   const AddNewMember(this.groupId, {super.key});
 
 
 
