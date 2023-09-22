@@ -90,14 +90,6 @@ class _UserInformationScreenState extends ConsumerState<UserInformationScreen> {
               hintText: ' Enter Name',
               label: "Name",
             ),
-            // TextFormProfile(
-            //   hintText: " Enter something about you",
-            //   label: "About",
-            // ),
-            // TextFormProfile(
-            //   hintText: ' Enter Phone Number ',
-            //   label: "phone",
-            // ),
             kheight20,
             CommonButton(
               title: " save ",

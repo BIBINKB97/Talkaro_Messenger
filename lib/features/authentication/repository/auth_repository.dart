@@ -18,7 +18,7 @@ final authRepositoryProvider = Provider((ref) => AuthRepository(
 class AuthRepository {
   final FirebaseAuth auth;
   final FirebaseFirestore firestore;
-  AuthRepository({
+  AuthRepository({ 
     required this.auth,
     required this.firestore,
   });
