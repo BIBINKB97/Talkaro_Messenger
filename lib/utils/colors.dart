@@ -5,6 +5,7 @@ const kwhite = Colors.white;
 const kblack = Colors.black;
 const klight1 = Color.fromARGB(235, 223, 223, 223);
 const klight2 = Color.fromARGB(255, 90, 90, 90);
+const klight3 = Color.fromARGB(79, 177, 250, 186);
 const kgrey = Color.fromARGB(255, 132, 131, 131);
 const kAppbarWhite = Color.fromARGB(0, 255, 255, 255);
 const MaterialColor customColor = MaterialColor(

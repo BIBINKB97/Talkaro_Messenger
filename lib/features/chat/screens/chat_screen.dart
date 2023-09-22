@@ -11,6 +11,7 @@ import 'package:talkaro/models/user_model.dart';
 import 'package:talkaro/features/chat/widgets/chat_list.dart';
 import 'package:talkaro/features/authentication/controller/auth_controller.dart';
 import 'package:talkaro/utils/colors.dart';
+import 'package:talkaro/utils/constants.dart';
 
 final counterProvider = StateProvider<bool>((ref) => false);
 
@@ -54,6 +55,7 @@ class ChatScreen extends ConsumerWidget {
     return CallPickupScreen(
       scaffold: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: ktheme,
           title: isGroupChat
               ? StreamBuilder<GroupModel>(
@@ -64,20 +66,25 @@ class ChatScreen extends ConsumerWidget {
                     }
                     var userdata = snapshot.data;
                     return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Icon(
+                              Icons.arrow_back,
+                              size: 22,
+                            )),
                         InkWell(
                           onTap: () {
                             showDialog(
                               context: context,
                               builder: (BuildContext context) {
-                                return AlertDialog(
-                                  backgroundColor:
-                                      const Color.fromRGBO(0, 0, 0, 0),
-                                  content: CircleAvatar(
-                                    radius: 130,
-                                    backgroundImage:
-                                        NetworkImage(userdata.groupPic),
-                                  ),
+                                return Dialog(
+                                  child: Image(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(userdata.groupPic)),
                                 );
                               },
                             );
@@ -88,10 +95,12 @@ class ChatScreen extends ConsumerWidget {
                             radius: 25,
                           ),
                         ),
+                        kwidth20,
                         Text(
                           name,
                           style: TextStyle(fontSize: 20),
                         ),
+                        kwidth60,
                         IconButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
@@ -113,19 +122,23 @@ class ChatScreen extends ConsumerWidget {
                     var userdata = snapshot.data;
                     return Row(
                       children: [
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Icon(
+                              Icons.arrow_back,
+                              size: 22,
+                            )),
                         InkWell(
                           onTap: () {
                             showDialog(
                               context: context,
                               builder: (BuildContext context) {
-                                return AlertDialog(
-                                  backgroundColor:
-                                      const Color.fromRGBO(0, 0, 0, 0),
-                                  content: CircleAvatar(
-                                    radius: 130,
-                                    backgroundImage:
-                                        NetworkImage(userdata.profilePic),
-                                  ),
+                                return Dialog(
+                                  child: Image(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(userdata.profilePic)),
                                 );
                               },
                             );
@@ -140,6 +153,7 @@ class ChatScreen extends ConsumerWidget {
                           width: 10,
                         ),
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               name,
@@ -147,8 +161,8 @@ class ChatScreen extends ConsumerWidget {
                             ),
                             Text(snapshot.data!.isOnline ? 'online' : 'offline',
                                 style: const TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.normal)),
+                                  fontSize: 15,
+                                )),
                           ],
                         ),
                       ],

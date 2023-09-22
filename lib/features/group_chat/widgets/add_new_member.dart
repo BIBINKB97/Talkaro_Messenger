@@ -8,15 +8,14 @@ import 'package:talkaro/features/group_chat/widgets/select_contacts_group.dart';
 import 'package:talkaro/features/select_contacts/controller/select_contact_controller.dart';
 import 'package:talkaro/models/group.dart';
 import 'package:talkaro/utils/colors.dart';
+import 'package:talkaro/utils/constants.dart';
 
 class AddNewMember extends ConsumerStatefulWidget {
   static const String routeName = '/add-new';
 
   final String groupId;
 
-   const AddNewMember(this.groupId, {super.key});
-
-
+  const AddNewMember(this.groupId, {super.key});
 
   @override
   ConsumerState<AddNewMember> createState() => _AddNewMemberState();
@@ -33,24 +32,24 @@ class _AddNewMemberState extends ConsumerState<AddNewMember> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ktheme,
-        title: const Text('Add new Member'),
+        title: Text('Add new Member'),
         centerTitle: true,
+        elevation: 0,
       ),
       body: FutureBuilder<GroupModel>(
         future: ref.read(chatControllerProvider).fetchGroupData(widget.groupId),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
+            return Center(
               child: Loader(),
             );
           }
 
           if (snapshot.hasError) {
-            return const Center(
+            return Center(
               child: Text("Error fetching data"),
             );
           }
@@ -58,7 +57,7 @@ class _AddNewMemberState extends ConsumerState<AddNewMember> {
           return Center(
             child: Column(
               children: [
-                const SizedBox(height: 10),
+                SizedBox(height: 10),
                 Stack(
                   children: [
                     CircleAvatar(
@@ -66,38 +65,35 @@ class _AddNewMemberState extends ConsumerState<AddNewMember> {
                         backgroundImage: NetworkImage(groupdata!.groupPic)),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: size.width * 0.85,
-                      padding: const EdgeInsets.all(20),
-                      child: TextField(
-                          controller: groupnameController,
-                          decoration: InputDecoration(
-                              hintText: groupdata.name,
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide:
-                                      const BorderSide(color: Colors.amber),
-                                  borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide:
-                                      const BorderSide(color: Colors.amber),
-                                  borderRadius: BorderRadius.circular(10)))),
+                kheight10,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: klight3,
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                        child: Text(
+                          groupdata.name,
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.w600),
+                        ),
+                      ),
                     ),
-                  ],
+                  ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
+                kheight20,
+                Text(
                   'Select Contacts',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                const Divider(
+                Divider(
                   thickness: 1,
                 ),
-                const SelectContactsGroup(),
+                SelectContactsGroup(),
               ],
             ),
           );
@@ -121,13 +117,13 @@ class _AddNewMemberState extends ConsumerState<AddNewMember> {
                 return;
               },
               error: (err, trace) => ErrorScreen(error: err.toString()),
-              loading: () => const Loader());
+              loading: () => Loader());
           ref
               .read(groupControllerProvider)
               .addnewMember(context, widget.groupId, selectedContsctsUid);
         },
-        backgroundColor: Colors.amber,
-        child: const Icon(
+        backgroundColor: ktheme,
+        child: Icon(
           Icons.done,
           color: Colors.white,
         ),

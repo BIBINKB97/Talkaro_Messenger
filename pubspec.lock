@@ -454,6 +454,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.7+1"
+  flutter_image:
+    dependency: "direct main"
+    description:
+      name: flutter_image
+      sha256: b41c6cbf9462d8cbdeeb7b5dd84c7bca5176e9e4d6e8b968290e371ab758cc0c
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.8"
   flutter_lints:
     dependency: "direct dev"
     description:

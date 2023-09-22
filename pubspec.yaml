@@ -42,6 +42,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_contacts: any
+  flutter_image: ^4.1.8
   flutter_otp_text_field: ^1.1.1
   flutter_riverpod: any
   flutter_sound: any

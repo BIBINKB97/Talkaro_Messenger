@@ -13,3 +13,4 @@ const kwidth5 = SizedBox(width: 5);
 const kwidth10 = SizedBox(width: 10);
 const kwidth20 = SizedBox(width: 20);
 const kwidth30 = SizedBox(width: 30);
+const kwidth60 = SizedBox(width: 60);
