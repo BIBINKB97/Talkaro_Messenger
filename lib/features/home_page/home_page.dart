@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:talkaro/features/group_chat/screens/create_group_screen.dart';
+import 'package:talkaro/features/home_page/widgets/search_chat.dart';
 import 'package:talkaro/features/select_contacts/screens/select_contacts_screen.dart';
 import 'package:talkaro/features/home_page/widgets/drawer.dart';
 import 'package:talkaro/features/home_page/widgets/contact_list_tab1.dart';
 import 'package:talkaro/features/home_page/widgets/tab2_widgets.dart';
-import 'package:talkaro/features/home_page/widgets/tab_style.dart';
 import 'package:talkaro/features/authentication/controller/auth_controller.dart';
 
 import 'package:talkaro/utils/colors.dart';
-import 'package:talkaro/utils/main_widgets.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -46,7 +44,6 @@ class _HomePageState extends ConsumerState<HomePage>
         ref.read(authControllerProvider).setUserState(false);
         break;
       case AppLifecycleState.hidden:
-      
         break;
     }
   }
@@ -74,41 +71,7 @@ class _HomePageState extends ConsumerState<HomePage>
         drawer: CustomDrawer(),
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(110),
-          child: AppBar(
-            backgroundColor: ktheme,
-            title: AppBarTitle(title: 'Talkaro'),
-            elevation: 0,
-            actions: [
-              IconButton(
-                icon: Icon(
-                  Icons.search,
-                  color: kwhite,
-                ),
-                onPressed: () {},
-              ),
-              PopupMenuButton(
-                itemBuilder: (context) => [
-                  PopupMenuItem(
-                    child: Text('Create Group'),
-                    onTap: () => Future(
-                      () => Navigator.pushNamed(
-                        context,
-                        CreateGroupScreen.routeName,
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            ],
-            bottom: TabBar(
-                unselectedLabelColor: kblack,
-                isScrollable: true,
-                indicatorColor: kwhite,
-                tabs: const [
-                  CustomTab(tabtitle: "Chats"),
-                  CustomTab(tabtitle: "Calls"),
-                ]),
-          ),
+          child: AppbarWithSearch(),
         ),
         body: TabBarView(children: const [
           ContactsList(),

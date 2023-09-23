@@ -6,6 +6,7 @@ import 'package:talkaro/common/widgets/loader.dart';
 import 'package:talkaro/features/select_contacts/controller/select_contact_controller.dart';
 import 'package:talkaro/features/select_contacts/widgets/search_delegate.dart';
 import 'package:talkaro/utils/colors.dart';
+import 'package:talkaro/utils/constants.dart';
 import 'package:talkaro/utils/main_widgets.dart';
 
 class SelsectContactScreen extends ConsumerWidget {
@@ -36,7 +37,7 @@ class SelsectContactScreen extends ConsumerWidget {
                     ));
               },
               icon: Icon(Icons.search)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+          kwidth10
         ],
       ),
       body: ref.watch(getContactsProvider).when(

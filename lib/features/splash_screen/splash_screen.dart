@@ -5,7 +5,6 @@ import 'package:talkaro/features/login_register/login_screen.dart';
 
 import 'package:talkaro/utils/colors.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -16,10 +15,10 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    
     super.initState();
     Timer(Duration(seconds: 2), () {
-      Navigator.pushNamed(context, LoginScreen.routeName);
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => LoginScreen()));
     });
   }
 
