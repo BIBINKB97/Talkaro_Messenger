@@ -82,6 +82,7 @@ class ContactsList extends ConsumerWidget {
                     );
                   },
                 );
+                
               }),
           StreamBuilder<List<ChatContact>>(
               stream: ref.watch(chatControllerProvider).chatContacts(),

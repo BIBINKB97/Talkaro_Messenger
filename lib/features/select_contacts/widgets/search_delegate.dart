@@ -28,6 +28,7 @@ class _SearchState extends ConsumerState<Search> {
       }
     });
   }
+ 
 
   void selectContact(
       WidgetRef ref, Contact selectedContact, BuildContext context) {
