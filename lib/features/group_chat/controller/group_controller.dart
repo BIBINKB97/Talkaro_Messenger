@@ -7,13 +7,15 @@ import 'package:talkaro/features/group_chat/repository/group_repository.dart';
 import 'package:talkaro/models/group.dart';
 
 
-final groupControllerProvider = Provider((ref) {
-  final groupRepository = ref.read(groupRepositoryProvider);
-  return GroupController(
-    groupRepository: groupRepository,
-    ref: ref,
-  );
-});
+final groupControllerProvider = Provider(
+  (ref) {
+    final groupRepository = ref.read(groupRepositoryProvider);
+    return GroupController(
+      groupRepository: groupRepository,
+      ref: ref,
+    );
+  },
+);
 
 class GroupController {
   final GroupRepository groupRepository;
@@ -27,9 +29,11 @@ class GroupController {
       List<Contact> selectedContact) {
     groupRepository.createGroup(context, name, profilePic, selectedContact);
   }
-   Stream<GroupModel> groupDatabyId(String groupId) {
+
+  Stream<GroupModel> groupDatabyId(String groupId) {
     return groupRepository.groupData(groupId);
   }
+
   void addnewMember(BuildContext context, String groupId, List<String> newMemberUid) {
     groupRepository.addMemberToGroup(context, groupId, newMemberUid);
   }
