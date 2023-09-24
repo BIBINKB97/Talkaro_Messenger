@@ -25,7 +25,7 @@ class GroupModel {
       'lastMessage': lastMessage,
       'groupPic': groupPic,
       'membersUid': membersUid,
-      'timeSent': timeSent,
+      'timeSent': timeSent.millisecondsSinceEpoch,
     };
   }
 

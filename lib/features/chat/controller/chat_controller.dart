@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/enums/messege_enum.dart';
@@ -41,10 +40,10 @@ class ChatController {
   Stream<List<Messege>> groupchatStream(String gorupId) {
     return chatRepository.getGroupChatStream(gorupId);
   }
-   Future<GroupModel> fetchGroupData(String groupId) {
+
+  Future<GroupModel> fetchGroupData(String groupId) {
     return chatRepository.fetchGroupData(groupId);
   }
-
 
   void sendTextMessege(
     BuildContext context,
@@ -63,6 +62,7 @@ class ChatController {
             isGroupChat: isGroupChat,
           ),
         );
+    ref.read(messageReplyProvider.state).update((state) => null);
   }
 
   void sendFileMessege(

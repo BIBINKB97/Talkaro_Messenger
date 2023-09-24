@@ -11,8 +11,6 @@ import 'package:talkaro/models/group.dart';
 import 'package:talkaro/models/user_model.dart';
 import 'package:uuid/uuid.dart';
 
-
-
 final groupRepositoryProvider = Provider(
   (ref) => GroupRepository(
     firestore: FirebaseFirestore.instance,
@@ -69,6 +67,7 @@ class GroupRepository {
       showSnackBar(context: context, content: e.toString());
     }
   }
+
   Stream<GroupModel> groupData(String groupId) {
     return firestore.collection('groups').doc(groupId).snapshots().map(
           (event) => GroupModel.fromMap(
@@ -76,6 +75,7 @@ class GroupRepository {
           ),
         );
   }
+
   Future<void> addMemberToGroup(
       BuildContext context, String groupId, List<String> newMemberUid) async {
     try {
@@ -116,9 +116,8 @@ class GroupRepository {
             }
           } else {
             showSnackBar(
-              context: context,
-              content: 'This number does not exist on this app.',
-            );
+                context: context,
+                content: 'This number does not exist on this app.');
           }
         }
       }

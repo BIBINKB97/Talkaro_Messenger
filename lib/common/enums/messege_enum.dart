@@ -20,8 +20,6 @@ extension ConvertMessege on String {
         return MessegeEnum.audio;
       case 'video':
         return MessegeEnum.video;
-      case 'gif':
-        return MessegeEnum.gif;
       default:
         return MessegeEnum.text;
     }

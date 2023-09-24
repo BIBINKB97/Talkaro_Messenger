@@ -53,25 +53,7 @@ class ChatRepository {
       return contacts;
     });
   }
-
-  Stream<List<Messege>> getChatStream(String recieverUserId) {
-    return firestore
-        .collection('users')
-        .doc(auth.currentUser!.uid)
-        .collection('chats')
-        .doc(recieverUserId)
-        .collection('messeges')
-        .orderBy('timeSent')
-        .snapshots()
-        .map((event) {
-      List<Messege> messeges = [];
-      for (var document in event.docs) {
-        messeges.add(Messege.fromMap(document.data()));
-      }
-      return messeges;
-    });
-  }
-
+  
   Stream<List<GroupModel>> getChatGroups() {
     return firestore.collection('groups').snapshots().map((event) {
       List<GroupModel> groups = [];
@@ -85,7 +67,6 @@ class ChatRepository {
       return groups;
     });
   }
-
   Future<GroupModel> fetchGroupData(String groupId) async {
     try {
       final DocumentSnapshot groupDoc =
@@ -107,6 +88,27 @@ class ChatRepository {
     }
   }
 
+
+  Stream<List<Messege>> getChatStream(String recieverUserId) {
+    return firestore
+        .collection('users')
+        .doc(auth.currentUser!.uid)
+        .collection('chats')
+        .doc(recieverUserId)
+        .collection('messeges')
+        .orderBy('timeSent')
+        .snapshots()
+        .map((event) {
+      List<Messege> messeges = [];
+      for (var document in event.docs) {
+        messeges.add(Messege.fromMap(document.data()));
+      }
+      return messeges;
+    });
+  }
+
+  
+
   Stream<List<Messege>> getGroupChatStream(String groupId) {
     return firestore
         .collection('groups')
@@ -122,6 +124,7 @@ class ChatRepository {
       return messeges;
     });
   }
+
 
   void _saveDataToContactsSubCollection(
     UserModel sendersUserData,
@@ -198,6 +201,7 @@ class ChatRepository {
               : recieverUsername ?? '',
       repliedMessageType:
           messageReplay == null ? MessegeEnum.text : messageReplay.messegeEnum,
+      isGroupChat: false,
     );
 
     if (isGroupChat) {

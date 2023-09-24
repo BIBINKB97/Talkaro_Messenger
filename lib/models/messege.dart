@@ -10,6 +10,7 @@ class Messege {
   final bool isSeen;
   final String repliedMessage;
   final String repliedTo;
+  final bool isGroupChat;
   final MessegeEnum repliedMessageType;
 
   Messege({
@@ -22,6 +23,7 @@ class Messege {
     required this.isSeen,
     required this.repliedMessage,
     required this.repliedTo,
+     required this.isGroupChat,
     required this.repliedMessageType,
   });
 
@@ -51,7 +53,7 @@ class Messege {
       isSeen: map['isSeen'] ?? false,
       repliedMessage: map['repliedMessage'] ?? '',
       repliedTo: map['repliedTo'] ?? '',
-      repliedMessageType: (map['repliedMessageType'] as String).toEnum(),
+      repliedMessageType: (map['repliedMessageType'] as String).toEnum(), isGroupChat:false,
     );
   }
 }

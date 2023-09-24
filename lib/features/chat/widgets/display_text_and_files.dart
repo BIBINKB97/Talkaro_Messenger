@@ -47,6 +47,7 @@ class DisplayTextAndFiles extends StatelessWidget {
                         isPlaying = true;
                       });
                     }
+
                   },
                   icon: Icon(
                     isPlaying ? Icons.pause_circle : Icons.play_circle,
@@ -57,7 +58,7 @@ class DisplayTextAndFiles extends StatelessWidget {
                 ? VideoPlayerItem(
                     videoUrl: message,
                   )
-                : type == MessegeEnum.gif
+                : type == MessegeEnum.gif 
                     ? CachedNetworkImage(
                         imageUrl: message,
                       )

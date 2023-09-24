@@ -67,7 +67,7 @@ class _AddNewMemberState extends ConsumerState<AddNewMember> {
                 ),
                 kheight10,
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -109,7 +109,7 @@ class _AddNewMemberState extends ConsumerState<AddNewMember> {
                     selectedContsctsUid.add(
                       contactList[i].phones[0].number.replaceAll(
                             ' ',
-                            '',
+                            ' ',
                           ),
                     );
                   }
