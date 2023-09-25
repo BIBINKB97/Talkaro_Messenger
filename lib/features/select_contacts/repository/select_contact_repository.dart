@@ -8,7 +8,6 @@ import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/models/user_model.dart';
 import 'package:talkaro/features/chat/screens/chat_screen.dart';
 
-
 final selectContactsRepositoryProvider = Provider(
   (ref) => SelectContactRepository(
     firestore: FirebaseFirestore.instance,
