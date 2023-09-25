@@ -71,7 +71,7 @@ class CustomDrawer extends ConsumerWidget {
                 onTap: () => Future(
                   () => Navigator.pushNamed(
                     context,
-                    CreateGroupScreen.routeName,
+                    CreateGroup.routeName,
                   ),
                 ),
               ),

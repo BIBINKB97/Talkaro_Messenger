@@ -47,7 +47,7 @@ class ChatController {
 
   void sendTextMessege(
     BuildContext context,
-    String text,
+    String text, 
     String recieverUserId,
     bool isGroupChat,
   ) {

@@ -11,8 +11,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case LoginScreen.routeName:
       return MaterialPageRoute(builder: (context) => LoginScreen());
-      
-      case OTPScreen.routeName:
+
+    case OTPScreen.routeName:
       final verificationId = settings.arguments as String;
       final phoneNumber = settings.arguments as String;
       return MaterialPageRoute(
@@ -42,8 +42,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
                 isGroupChat: isGroupChat!,
               ));
 
-    case CreateGroupScreen.routeName:
-      return MaterialPageRoute(builder: (context) => CreateGroupScreen());
+    case CreateGroup.routeName:
+      return MaterialPageRoute(builder: (context) => CreateGroup());
 
     default:
       return MaterialPageRoute(

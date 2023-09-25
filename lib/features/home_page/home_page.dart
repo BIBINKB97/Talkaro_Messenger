@@ -86,7 +86,7 @@ class _HomePageState extends ConsumerState<HomePage>
                     onTap: () => Future(
                       () => Navigator.pushNamed(
                         context,
-                        CreateGroupScreen.routeName,
+                        CreateGroup.routeName,
                       ),
                     ),
                   ),
