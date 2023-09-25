@@ -1,3 +1,4 @@
+// ignore_for_file: use_build_context_synchronousl
 import 'dart:developer';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -80,17 +81,23 @@ class GroupRepository {
       BuildContext context, String groupId, List<String> newMemberUid) async {
     try {
       var userCollection = await firestore.collection('users').get();
+      bool isFound = false;
+
       for (var document in userCollection.docs) {
         var userData = UserModel.fromMap(document.data());
+
         for (int i = 0; i < newMemberUid.length; i++) {
           String selectedPhoneNum = newMemberUid[i];
           if (selectedPhoneNum == userData.phoneNumber) {
+            isFound = true;
             try {
               DocumentSnapshot groupDoc =
                   await firestore.collection('groups').doc(groupId).get();
+
               if (groupDoc.exists) {
                 List<dynamic> currentMembers = groupDoc['membersUid'];
                 bool memberExists = false;
+
                 for (int i = 0; i < newMemberUid.length; i++) {
                   if (!currentMembers.contains(userData.uid)) {
                     currentMembers.add(userData.uid);
@@ -109,15 +116,13 @@ class GroupRepository {
                 throw 'Group not found.';
               }
             } catch (e) {
-              showSnackBar(
-                context: context,
-                content: e.toString(),
-              );
+              showSnackBar(context: context, content: e.toString());
             }
           } else {
             showSnackBar(
-                context: context,
-                content: 'This number does not exist on this app.');
+              context: context,
+              content: 'This number does not exist on this app.',
+            );
           }
         }
       }

@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, deprecated_member_use
+
 import 'dart:developer';
 import 'package:talkaro/common/widgets/loader.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

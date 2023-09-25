@@ -11,6 +11,8 @@ import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
 
 class CustomDrawer extends ConsumerWidget {
+  const CustomDrawer({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return FutureBuilder<UserModel?>(

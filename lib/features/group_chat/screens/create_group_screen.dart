@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -26,7 +28,7 @@ class _CreateGroupState extends ConsumerState<CreateGroup> {
     setState(() {});
   }
 
-  void createGroup() {
+  void createGroup() async {
     if (groupNameController.text.trim().isNotEmpty && image != null) {
       ref.read(groupControllerProvider).createGroup(
             context,

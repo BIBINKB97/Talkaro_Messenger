@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,7 +20,7 @@ final authRepositoryProvider = Provider((ref) => AuthRepository(
 class AuthRepository {
   final FirebaseAuth auth;
   final FirebaseFirestore firestore;
-  AuthRepository({ 
+  AuthRepository({
     required this.auth,
     required this.firestore,
   });
@@ -62,7 +64,6 @@ class AuthRepository {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: verificationId, smsCode: userOTP);
       await auth.signInWithCredential(credential);
-      // ignore: use_build_context_synchronously
       Navigator.pushNamedAndRemoveUntil(
           context, UserInformationScreen.routeName, (route) => false);
     } on FirebaseAuthException catch (e) {
@@ -96,7 +97,6 @@ class AuthRepository {
         groupId: [],
       );
       await firestore.collection('users').doc(uid).set(user.toMap());
-      // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
