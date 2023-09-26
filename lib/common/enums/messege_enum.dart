@@ -24,6 +24,4 @@ extension ConvertMessege on String {
         return MessegeEnum.text;
     }
   }
-
-  
 }

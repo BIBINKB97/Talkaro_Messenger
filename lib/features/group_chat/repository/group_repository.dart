@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronousl
+// ignore_for_file: use_build_context_synchronousl, use_build_context_synchronously
 import 'dart:developer';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -81,7 +81,6 @@ class GroupRepository {
       BuildContext context, String groupId, List<String> newMemberUid) async {
     try {
       var userCollection = await firestore.collection('users').get();
-      bool isFound = false;
 
       for (var document in userCollection.docs) {
         var userData = UserModel.fromMap(document.data());
@@ -89,7 +88,6 @@ class GroupRepository {
         for (int i = 0; i < newMemberUid.length; i++) {
           String selectedPhoneNum = newMemberUid[i];
           if (selectedPhoneNum == userData.phoneNumber) {
-            isFound = true;
             try {
               DocumentSnapshot groupDoc =
                   await firestore.collection('groups').doc(groupId).get();
