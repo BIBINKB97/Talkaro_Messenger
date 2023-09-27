@@ -81,11 +81,6 @@ class CustomDrawer extends ConsumerWidget {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.person),
-                title: Text('Contacts'),
-                onTap: () {},
-              ),
-              ListTile(
                 leading: Icon(Icons.person_add),
                 title: Text('Invite Friends'),
                 onTap: () {
