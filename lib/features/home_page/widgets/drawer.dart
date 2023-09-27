@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/widgets/loader.dart';
 import 'package:talkaro/features/authentication/controller/auth_controller.dart';
 import 'package:talkaro/features/group_chat/screens/create_group_screen.dart';
+import 'package:talkaro/features/home_page/widgets/drawer_widgets/about_us.dart';
 import 'package:talkaro/features/home_page/widgets/drawer_widgets/privacy_policy.dart';
 import 'package:talkaro/features/login_register/user_information.dart';
 import 'package:talkaro/features/splash_screen/splash_screen.dart';
@@ -108,7 +109,8 @@ class CustomDrawer extends ConsumerWidget {
                 leading: Icon(Icons.info_outline),
                 title: Text('About Us'),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => AboutUs()));
                 },
               ),
               ListTile(
