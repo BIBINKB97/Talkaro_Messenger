@@ -114,9 +114,9 @@ class CustomDrawer extends ConsumerWidget {
                   Icons.logout,
                 ),
                 title: const Text(
-                  'Logout',
+                  'Signout',
                 ),
-                onTap: () {
+                onTap: () { 
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {

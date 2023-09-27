@@ -33,6 +33,7 @@ dependencies:
   cached_network_image: ^3.2.3
   cached_video_player: ^2.0.4
   cloud_firestore: any
+  connectivity_plus: ^4.0.2
   country_picker: any
   cupertino_icons: any
   emoji_picker_flutter: ^1.6.1
@@ -42,7 +43,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_contacts: ^1.1.7+1
-
   flutter_image: ^4.1.8
   flutter_otp_text_field: ^1.1.1
   flutter_riverpod: any
