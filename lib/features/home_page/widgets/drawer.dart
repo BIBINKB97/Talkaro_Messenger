@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/widgets/loader.dart';
 import 'package:talkaro/features/authentication/controller/auth_controller.dart';
 import 'package:talkaro/features/group_chat/screens/create_group_screen.dart';
+import 'package:talkaro/features/home_page/widgets/drawer_widgets/privacy_policy.dart';
 import 'package:talkaro/features/login_register/user_information.dart';
 import 'package:talkaro/features/splash_screen/splash_screen.dart';
 import 'package:talkaro/models/user_model.dart';
@@ -99,7 +100,8 @@ class CustomDrawer extends ConsumerWidget {
                 leading: Icon(Icons.privacy_tip),
                 title: Text('privacy policy'),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => PrivacyPolicy()));
                 },
               ),
               ListTile(
@@ -116,7 +118,7 @@ class CustomDrawer extends ConsumerWidget {
                 title: const Text(
                   'Signout',
                 ),
-                onTap: () { 
+                onTap: () {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
