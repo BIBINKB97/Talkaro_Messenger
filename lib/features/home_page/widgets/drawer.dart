@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:talkaro/common/widgets/loader.dart';
 import 'package:talkaro/features/authentication/controller/auth_controller.dart';
 import 'package:talkaro/features/group_chat/screens/create_group_screen.dart';
@@ -88,7 +89,7 @@ class CustomDrawer extends ConsumerWidget {
                 leading: Icon(Icons.person_add),
                 title: Text('Invite Friends'),
                 onTap: () {
-                  Navigator.pop(context);
+                  Share.share("talkaromessenger.playstore");
                 },
               ),
               Divider(
