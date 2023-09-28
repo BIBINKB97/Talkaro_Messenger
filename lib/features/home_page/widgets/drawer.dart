@@ -7,7 +7,7 @@ import 'package:talkaro/features/authentication/controller/auth_controller.dart'
 import 'package:talkaro/features/group_chat/screens/create_group_screen.dart';
 import 'package:talkaro/features/home_page/widgets/drawer_widgets/about_us.dart';
 import 'package:talkaro/features/home_page/widgets/drawer_widgets/privacy_policy.dart';
-import 'package:talkaro/features/login_register/user_information.dart';
+import 'package:talkaro/features/login_register/edit_user_information.dart';
 import 'package:talkaro/features/splash_screen/splash_screen.dart';
 import 'package:talkaro/models/user_model.dart';
 import 'package:talkaro/utils/colors.dart';
@@ -26,16 +26,9 @@ class CustomDrawer extends ConsumerWidget {
               child: ListView(
             children: const [
               kheight50,
-              Loader(),
               kheight50,
-              Loader(),
               kheight30,
               Loader(),
-              kheight80,
-              Loader(),
-              kheight30,
-              Loader(),
-              kheight30,
             ],
           ));
         }
@@ -59,7 +52,7 @@ class CustomDrawer extends ConsumerWidget {
                     InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const UserInformationScreen(),
+                          builder: (context) => const EditUserInformation(),
                         ));
                       },
                       child: CircleAvatar(
@@ -154,7 +147,6 @@ class CustomDrawer extends ConsumerWidget {
                             child: const Text('Yes'),
                             onPressed: () async {
                               FirebaseAuth.instance.signOut();
-
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(

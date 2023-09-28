@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talkaro/utils/constants.dart';
+import 'package:lottie/lottie.dart';
 
 class Loader extends StatelessWidget {
   const Loader({super.key});
@@ -7,14 +7,8 @@ class Loader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        children: const [
-          kheight10,
-          Text('Loading...'),
-          kheight10,
-          CircularProgressIndicator(),
-        ],
-      ),
+      child: SizedBox(
+          height: 100, width: 100, child: Lottie.asset('images/loading1.json')),
     );
   }
 }
