@@ -4,7 +4,7 @@ import 'package:talkaro/features/group_chat/screens/create_group_screen.dart';
 import 'package:talkaro/features/home_page/widgets/search_contacts.dart';
 import 'package:talkaro/features/home_page/widgets/drawer.dart';
 import 'package:talkaro/features/home_page/widgets/contact_list_tab1.dart';
-import 'package:talkaro/features/home_page/widgets/tab2_widgets.dart';
+import 'package:talkaro/features/calls/screen/tab2_widgets.dart';
 import 'package:talkaro/features/home_page/widgets/tab_style.dart';
 import 'package:talkaro/features/authentication/controller/auth_controller.dart';
 

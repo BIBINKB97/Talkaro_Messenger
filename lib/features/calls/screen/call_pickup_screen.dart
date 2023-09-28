@@ -8,6 +8,7 @@ import 'package:talkaro/models/call_model.dart';
 
 class CallPickupScreen extends ConsumerWidget {
   final Widget scaffold;
+
   const CallPickupScreen({
     Key? key,
     required this.scaffold,
@@ -56,9 +57,10 @@ class CallPickupScreen extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.call_end,
-                              color: Colors.redAccent),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          icon: const Icon(Icons.call_end, color: Colors.red),
                         ),
                         const SizedBox(width: 25),
                         IconButton(
