@@ -1,5 +1,4 @@
 // ignore_for_file: use_build_context_synchronously
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,6 @@ import 'package:talkaro/router.dart';
 import 'package:talkaro/features/home_page/home_page.dart';
 import 'package:talkaro/features/authentication/controller/auth_controller.dart';
 import 'package:talkaro/features/splash_screen/splash_screen.dart';
-
 import 'package:talkaro/utils/colors.dart';
 
 // void main() async {

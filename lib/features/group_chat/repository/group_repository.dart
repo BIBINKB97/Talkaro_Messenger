@@ -1,15 +1,14 @@
-// ignore_for_file: use_build_context_synchronousl, use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously
 import 'dart:developer';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_contacts/flutter_contacts.dart';
+import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/repositories/common_firebase_storage_repository.dart';
 import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/models/group.dart';
-import 'package:talkaro/models/user_model.dart';
 import 'package:uuid/uuid.dart';
 
 final groupRepositoryProvider = Provider(
@@ -78,51 +77,40 @@ class GroupRepository {
   }
 
   Future<void> addMemberToGroup(
-      BuildContext context, String groupId, List<String> newMemberUid) async {
+    BuildContext context,
+    String groupId,
+    List<String> newMemberUids,
+  ) async {
     try {
-      var userCollection = await firestore.collection('users').get();
+      DocumentReference groupRef = firestore.collection('groups').doc(groupId);
+      DocumentSnapshot groupDoc = await groupRef.get();
 
-      for (var document in userCollection.docs) {
-        var userData = UserModel.fromMap(document.data());
+      if (groupDoc.exists) {
+        List<dynamic> currentMembers = groupDoc['membersUid'];
 
-        for (int i = 0; i < newMemberUid.length; i++) {
-          String selectedPhoneNum = newMemberUid[i];
-          if (selectedPhoneNum == userData.phoneNumber) {
-            try {
-              DocumentSnapshot groupDoc =
-                  await firestore.collection('groups').doc(groupId).get();
-
-              if (groupDoc.exists) {
-                List<dynamic> currentMembers = groupDoc['membersUid'];
-                bool memberExists = false;
-
-                for (int i = 0; i < newMemberUid.length; i++) {
-                  if (!currentMembers.contains(userData.uid)) {
-                    currentMembers.add(userData.uid);
-                    await firestore.collection('groups').doc(groupId).update({
-                      'membersUid': currentMembers,
-                    });
-                    log('newmember added${newMemberUid[i]}');
-                  } else {
-                    memberExists = true;
-                  }
-                }
-                if (memberExists) {
-                  throw 'One or more members already exist in the group.';
-                }
-              } else {
-                throw 'Group not found.';
-              }
-            } catch (e) {
-              showSnackBar(context: context, content: e.toString());
-            }
-          } else {
-            showSnackBar(
-              context: context,
-              content: 'This number does not exist on this app.',
-            );
+        List<String> membersToAdd = [];
+        for (int i = 0; i < newMemberUids.length; i++) {
+          if (!currentMembers.contains(newMemberUids[i])) {
+            membersToAdd.add(newMemberUids[i]);
           }
         }
+
+        if (membersToAdd.isNotEmpty) {
+          currentMembers.addAll(membersToAdd);
+          await groupRef.update({
+            'membersUid': currentMembers,
+          });
+
+          log('New members added: $membersToAdd');
+          showSnackBar(
+            context: context,
+            content: 'Members added successfully.',
+          );
+        } else {
+          throw 'Selected members are already part of the group.';
+        }
+      } else {
+        throw 'Group not found.';
       }
     } catch (e) {
       showSnackBar(context: context, content: e.toString());

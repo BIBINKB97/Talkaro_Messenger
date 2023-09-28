@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/utils/utils.dart';
 import 'package:talkaro/features/group_chat/controller/group_controller.dart';
 import 'package:talkaro/features/group_chat/widgets/select_contacts_group.dart';
+import 'package:talkaro/features/home_page/home_page.dart';
 import 'package:talkaro/utils/colors.dart';
 import 'package:talkaro/utils/constants.dart';
 import 'package:talkaro/utils/main_widgets.dart';
@@ -37,7 +38,8 @@ class _CreateGroupState extends ConsumerState<CreateGroup> {
             ref.read(SelectedGroupsContacts),
           );
       ref.read(SelectedGroupsContacts.state).update((state) => []);
-      Navigator.pop(context);
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => HomePage()));
     }
   }
 

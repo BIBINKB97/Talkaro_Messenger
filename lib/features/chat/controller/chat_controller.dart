@@ -18,6 +18,13 @@ final chatControllerProvider = Provider((ref) {
     ref: ref,
   );
 });
+final chatControllerRead = Provider((ref) {
+  final chatRepository = ref.read(chatRepositoryProvider);
+  return ChatController(
+    chatRepository: chatRepository,
+    ref: ref,
+  );
+});
 
 class ChatController {
   final ChatRepository chatRepository;

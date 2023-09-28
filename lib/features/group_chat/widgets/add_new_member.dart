@@ -109,7 +109,7 @@ class _AddNewMemberState extends ConsumerState<AddNewMember> {
                     selectedContsctsUid.add(
                       contactList[i].phones[0].number.replaceAll(
                             ' ',
-                            ' ',
+                            '',
                           ),
                     );
                   }
@@ -117,7 +117,7 @@ class _AddNewMemberState extends ConsumerState<AddNewMember> {
                 return;
               },
               error: (err, trace) => ErrorScreen(error: err.toString()),
-              loading: () => Loader());
+              loading: () => const Loader());
           ref
               .read(groupControllerProvider)
               .addnewMember(context, widget.groupId, selectedContsctsUid);

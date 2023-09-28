@@ -22,9 +22,22 @@ class CustomDrawer extends ConsumerWidget {
       future: ref.read(authControllerProvider).getUserData(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Drawer(
-            child: Loader(),
-          );
+          return Drawer(
+              child: ListView(
+            children: const [
+              kheight50,
+              Loader(),
+              kheight50,
+              Loader(),
+              kheight30,
+              Loader(),
+              kheight80,
+              Loader(),
+              kheight30,
+              Loader(),
+              kheight30,
+            ],
+          ));
         }
 
         if (snapshot.hasError) {
