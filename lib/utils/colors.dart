@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-const ktheme = Color.fromARGB(255, 59, 178, 156);
+// const ktheme = Color.fromARGB(255, 59, 178, 156);
 // const ktheme = Color.fromARGB(215, 59, 144, 149);
-// const ktheme = Color.fromARGB(156, 59, 65, 178);
+const ktheme = Color.fromARGB(156, 59, 65, 178);
 // const ktheme = Color.fromARGB(192, 181, 159, 72);
 
 const kwhite = Colors.white;

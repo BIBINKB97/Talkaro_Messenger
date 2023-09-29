@@ -97,7 +97,7 @@ class ChatScreen extends ConsumerWidget {
                         ),
                         kwidth20,
                         Text(
-                        name,
+                          name,
                           style: TextStyle(fontSize: 20),
                         ),
                         kwidth60,

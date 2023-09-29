@@ -48,6 +48,10 @@ import 'package:talkaro/utils/colors.dart';
 //             ));
 //   }
 // }
+final ThemeData nightModeTheme = ThemeData(
+  brightness: Brightness.dark,
+);
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -113,7 +117,7 @@ class _MyAppState extends ConsumerState<MyApp> {
         builder: (context) {
           checkAndNavigate(context);
           return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+            body: Center(child: Loader()),
           );
         },
       ),
