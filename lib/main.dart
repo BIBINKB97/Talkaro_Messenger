@@ -13,41 +13,6 @@ import 'package:talkaro/features/authentication/controller/auth_controller.dart'
 import 'package:talkaro/features/splash_screen/splash_screen.dart';
 import 'package:talkaro/utils/colors.dart';
 
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp(
-//     options: DefaultFirebaseOptions.currentPlatform,
-//   );
-//   runApp(ProviderScope(child: const MyApp()));
-// }
-
-// class MyApp extends ConsumerWidget {
-//   const MyApp({super.key});
-//   @override
-//   Widget build(BuildContext context, WidgetRef ref) {
-//     return MaterialApp(
-//         debugShowCheckedModeBanner: false,
-//         title: 'Talkaro',
-//         theme: ThemeData(
-//             primarySwatch: customColor,
-//             iconTheme: IconThemeData(color: Colors.black)),
-//         onGenerateRoute: (settings) => generateRoute(settings),
-//         home: ref.watch(userDataAuthProvider).when(
-//               data: (user) {
-//                 if (user == null) {
-//                   return SplashScreen();
-//                 }
-//                 return HomePage();
-//               },
-//               error: (err, trace) {
-//                 return ErrorScreen(
-//                   error: err.toString(),
-//                 );
-//               },
-//               loading: () => Loader(),
-//             ));
-//   }
-// }
 final ThemeData nightModeTheme = ThemeData(
   brightness: Brightness.dark,
 );
@@ -78,7 +43,6 @@ class _MyAppState extends ConsumerState<MyApp> {
         MaterialPageRoute(builder: (context) => ErrorPage()),
       );
     } else {
-      // Navigate to the home screen or other appropriate screen
       ref.watch(userDataAuthProvider).when(
             data: (user) {
               if (user == null) {
@@ -124,3 +88,39 @@ class _MyAppState extends ConsumerState<MyApp> {
     );
   }
 }
+
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+//   runApp(ProviderScope(child: const MyApp()));
+// }
+
+// class MyApp extends ConsumerWidget {
+//   const MyApp({super.key});
+//   @override
+//   Widget build(BuildContext context, WidgetRef ref) {
+//     return MaterialApp(
+//         debugShowCheckedModeBanner: false,
+//         title: 'Talkaro',
+//         theme: ThemeData(
+//             primarySwatch: customColor,
+//             iconTheme: IconThemeData(color: Colors.black)),
+//         onGenerateRoute: (settings) => generateRoute(settings),
+//         home: ref.watch(userDataAuthProvider).when(
+//               data: (user) {
+//                 if (user == null) {
+//                   return SplashScreen();
+//                 }
+//                 return HomePage();
+//               },
+//               error: (err, trace) {
+//                 return ErrorScreen(
+//                   error: err.toString(),
+//                 );
+//               },
+//               loading: () => Loader(),
+//             ));
+//   }
+// }

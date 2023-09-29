@@ -31,7 +31,7 @@ class CommonButton extends StatelessWidget {
               fixedSize: Size(130, 50)),
           child: Text(
             title,
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 18),
           )),
     );
   }

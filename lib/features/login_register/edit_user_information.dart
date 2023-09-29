@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talkaro/common/utils/utils.dart';
@@ -76,7 +75,7 @@ class _EditUserInformationState extends ConsumerState<EditUserInformation> {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: ktheme,
-          title: Text('Edit your Information'),
+          title: Text('Edit your informations'),
           centerTitle: true,
         ),
         body: isLoading
@@ -132,7 +131,7 @@ class _EditUserInformationState extends ConsumerState<EditUserInformation> {
                                     focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(color: ktheme),
                                         borderRadius:
-                                            BorderRadius.circular(10)))),
+                                            BorderRadius.circular(30)))),
                           )
                         ],
                       ),
