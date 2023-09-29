@@ -4,6 +4,7 @@ import 'package:talkaro/common/widgets/error.dart';
 import 'package:talkaro/common/widgets/loader.dart';
 import 'package:talkaro/features/chat/controller/chat_controller.dart';
 import 'package:talkaro/features/group_chat/controller/group_controller.dart';
+import 'package:talkaro/features/group_chat/repository/group_repository.dart';
 import 'package:talkaro/features/group_chat/widgets/select_contacts_group.dart';
 import 'package:talkaro/features/select_contacts/controller/select_contact_controller.dart';
 import 'package:talkaro/models/group.dart';
@@ -100,14 +101,17 @@ class _AddNewMemberState extends ConsumerState<AddNewMember> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
           List<String> selectedContsctsUid = [];
           ref.watch(getContactsProvider).when(
-              data: (contactList) {
-                for (int i = 0; i <= contactList.length; i++) {
-                  if (selectedContactsIndex.contains(i)) {
+              data: (contact) {
+                for (int i = 0; i <= contact.length; i++) {
+                  if (ref
+                      .read(groupRepositoryProvider)
+                      .selectedContactsIndex
+                      .contains(i)) {
                     selectedContsctsUid.add(
-                      contactList[i].phones[0].number.replaceAll(
+                      contact[i].phones[0].number.replaceAll(
                             ' ',
                             '',
                           ),

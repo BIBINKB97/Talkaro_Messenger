@@ -34,7 +34,7 @@ class GroupController {
     return groupRepository.groupData(groupId);
   }
 
-  void addnewMember(BuildContext context, String groupId, List<String> newMemberUid) {
+void addnewMember(BuildContext context, String groupId, List<String> newMemberUid) {
     groupRepository.addMemberToGroup(context, groupId, newMemberUid);
   }
 }

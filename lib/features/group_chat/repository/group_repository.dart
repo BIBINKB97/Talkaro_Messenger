@@ -76,6 +76,15 @@ class GroupRepository {
         );
   }
 
+  List<int> selectedContactsIndex = [];
+
+  void selectContact(int index, Contact contact) {
+    if (selectedContactsIndex.contains(index)) {
+    } else {
+      selectedContactsIndex.add(index);
+    }
+  }
+
   Future<void> addMemberToGroup(
     BuildContext context,
     String groupId,
@@ -104,8 +113,9 @@ class GroupRepository {
           log('New members added: $membersToAdd');
           showSnackBar(
             context: context,
-            content: 'Members added successfully.',
+            content: 'Member added successfully.',
           );
+          Navigator.pop(context);
         } else {
           throw 'Selected members are already part of the group.';
         }

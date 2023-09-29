@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:talkaro/features/group_chat/repository/group_repository.dart';
 import 'package:talkaro/features/select_contacts/controller/select_contact_controller.dart';
 import 'package:talkaro/utils/constants.dart';
 
@@ -87,8 +88,12 @@ class _SelectContactsGroupState extends ConsumerState<SelectContactsGroup> {
                 itemCount: filteredContacts.length,
                 itemBuilder: (context, index) {
                   final contact = filteredContacts[index];
+                  
                   return InkWell(
-                    onTap: () => selectContact(index, contact),
+                    onTap: () {
+                      selectContact(index, contact);
+                      ref.read(groupRepositoryProvider).selectContact(index,contact);
+                    },
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 8),
                       child: ListTile(

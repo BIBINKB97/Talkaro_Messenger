@@ -177,12 +177,14 @@ class ChatScreen extends ConsumerWidget {
               },
               icon: Icon(Icons.videocam_rounded),
             ),
+            kwidth2, 
             IconButton(
               onPressed: () {
                 makeAudioCall(ref, context);
               },
               icon: Icon(Icons.call),
             ),
+            kwidth20
           ],
         ),
         body: Column(
